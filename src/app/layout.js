@@ -13,6 +13,14 @@ export const metadata = {
   verification: {
     google: "3a4AnKGhjpOrKWnt67PaeTDVBtF5Hh8NQTjn4EPzPec",
   },
+  icons: {
+    icon: [
+      { url: "/images/nutshub.jpg", type: "image/jpeg" },
+      { url: "/favicon.ico" }
+    ],
+    shortcut: "/images/nutshub.jpg",
+    apple: "/images/nutshub.jpg",
+  },
   openGraph: {
     title: "NutsHub — Premium Dry Fruits & Nuts | Panathur, Bangalore",
     description: "NutsHub is one of the leading dry fruit and nut retailers in Panathur, Bangalore. Handpicked, naturally dried, premium almonds, cashews, pistachios, walnuts, and dates.",
@@ -47,7 +55,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <meta name="google-site-verification" content="3a4AnKGhjpOrKWnt67PaeTDVBtF5Hh8NQTjn4EPzPec" />
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥜</text></svg>" />
+        <link rel="icon" href="/images/nutshub.jpg" type="image/jpeg" />
+        <link rel="apple-touch-icon" href="/images/nutshub.jpg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
