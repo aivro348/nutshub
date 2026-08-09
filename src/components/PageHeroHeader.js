@@ -46,6 +46,9 @@ export default function PageHeroHeader({
             src="/images/cashews.png"
             alt=""
             className="hero-sub-float left-float"
+            width="110"
+            height="110"
+            style={{ width: "110px", height: "110px" }}
             aria-hidden="true"
             loading="eager"
             decoding="async"
@@ -54,6 +57,9 @@ export default function PageHeroHeader({
             src="/images/almonds.png"
             alt=""
             className="hero-sub-float right-float"
+            width="110"
+            height="110"
+            style={{ width: "110px", height: "110px" }}
             aria-hidden="true"
             loading="eager"
             decoding="async"

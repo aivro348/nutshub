@@ -21,11 +21,11 @@ export default function Home() {
         <div className="hero-light-rays" aria-hidden="true" />
 
         {/* FLOATING PRODUCT IMAGES — CORNER PARALLAX DRIFTS */}
-        <img src="/images/strawberry_dry.png" alt="" className="hero-float-img float-1" aria-hidden="true" loading="eager" fetchPriority="high" decoding="async" />
-        <img src="/images/cashews.png" alt="" className="hero-float-img float-2" aria-hidden="true" loading="eager" fetchPriority="high" decoding="async" />
-        <img src="/images/dates.png" alt="" className="hero-float-img float-3" aria-hidden="true" loading="eager" fetchPriority="high" decoding="async" />
-        <img src="/images/almonds.png" alt="" className="hero-float-img float-4" aria-hidden="true" loading="eager" fetchPriority="high" decoding="async" />
-        <img src="/images/pistachios.png" alt="" className="hero-float-img float-5" aria-hidden="true" loading="eager" fetchPriority="high" decoding="async" />
+        <img src="/images/strawberry_dry.png" alt="" className="hero-float-img float-1" width="130" height="130" style={{ width: "130px", height: "130px" }} aria-hidden="true" loading="eager" fetchPriority="high" decoding="async" />
+        <img src="/images/cashews.png" alt="" className="hero-float-img float-2" width="100" height="100" style={{ width: "100px", height: "100px" }} aria-hidden="true" loading="eager" fetchPriority="high" decoding="async" />
+        <img src="/images/dates.png" alt="" className="hero-float-img float-3" width="110" height="110" style={{ width: "110px", height: "110px" }} aria-hidden="true" loading="eager" fetchPriority="high" decoding="async" />
+        <img src="/images/almonds.png" alt="" className="hero-float-img float-4" width="90" height="90" style={{ width: "90px", height: "90px" }} aria-hidden="true" loading="eager" fetchPriority="high" decoding="async" />
+        <img src="/images/pistachios.png" alt="" className="hero-float-img float-5" width="85" height="85" style={{ width: "85px", height: "85px" }} aria-hidden="true" loading="eager" fetchPriority="high" decoding="async" />
 
         {/* TOP GLOW BADGE */}
         <div style={{ textAlign: "center", marginTop: "0.5rem" }}>

@@ -28,7 +28,10 @@ export default function LoadingScreen() {
       <div className="loader-logo-wrap">
         <img
           src="/images/nutshub.jpg"
-          alt=""
+          alt="NutsHub"
+          width="64"
+          height="64"
+          style={{ width: "64px", height: "64px" }}
           className="loader-logo-img"
         />
         <h1 className="loader-brand">
