@@ -16,11 +16,11 @@ export const metadata = {
   },
   icons: {
     icon: [
-      { url: "/images/nutshub.jpg", type: "image/jpeg" },
+      { url: "/favicon.png", type: "image/png" },
       { url: "/favicon.ico" }
     ],
-    shortcut: "/images/nutshub.jpg",
-    apple: "/images/nutshub.jpg",
+    shortcut: "/favicon.png",
+    apple: "/apple-icon.png",
   },
   openGraph: {
     title: "NutsHub — Premium Dry Fruits & Nuts | Panathur, Bangalore",
@@ -56,8 +56,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <meta name="google-site-verification" content="3a4AnKGhjpOrKWnt67PaeTDVBtF5Hh8NQTjn4EPzPec" />
-        <link rel="icon" href="/images/nutshub.jpg" type="image/jpeg" />
-        <link rel="apple-touch-icon" href="/images/nutshub.jpg" />
+        <link rel="icon" href="/favicon.png" type="image/png" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/apple-icon.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
