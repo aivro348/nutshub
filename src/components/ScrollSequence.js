@@ -31,6 +31,7 @@ export default function ScrollSequence() {
     const frames = new Array(totalFrames);
     frameImagesRef.current = frames;
 
+    // 1. Eagerly preload all 250 frames from 001 to 250 for instant scroll scrubbing
     const loadFrame = (index) => {
       if (frames[index]) return;
       const img = new Image();
@@ -44,23 +45,19 @@ export default function ScrollSequence() {
       frames[index] = img;
     };
 
-    // Stage 1: Load initial 10 frames eagerly for instant crisp rendering
-    for (let i = 0; i < 10; i++) loadFrame(i);
+    // Stage 1: Load initial 30 frames eagerly
+    for (let i = 0; i < 30; i++) loadFrame(i);
 
-    // Stage 2: Idle-load keyframes 10..40 after main thread is free
-    const idleCallback = window.requestIdleCallback || ((cb) => setTimeout(cb, 200));
-    const idleId = idleCallback(() => {
-      for (let i = 10; i < 40; i++) loadFrame(i);
-    });
-
-    // Stage 3: On scroll or after 1.5s, progressively load remaining frames in small batches
-    let currentBatch = 40;
+    // Stage 2: Fast progressive load for all remaining 220 frames
+    let currentBatch = 30;
     const loadRemaining = () => {
       if (currentBatch >= totalFrames) return;
-      const end = Math.min(currentBatch + 15, totalFrames);
+      const end = Math.min(currentBatch + 30, totalFrames);
       for (let i = currentBatch; i < end; i++) loadFrame(i);
       currentBatch = end;
     };
+
+    const batchInterval = setInterval(loadRemaining, 100);
 
     const scrollHandler = () => {
       loadRemaining();
@@ -70,20 +67,7 @@ export default function ScrollSequence() {
     };
     window.addEventListener("scroll", scrollHandler, { passive: true });
 
-    // Fallback timer to finish loading remaining frames in background
-    const batchInterval = setInterval(loadRemaining, 250);
-
-    // 2. Preload Real Dry Fruits PNG Overlay Assets
-    const nutImgs = [];
-    REAL_NUT_ASSETS.forEach((asset, idx) => {
-      const img = new Image();
-      img.src = asset.src;
-      nutImgs[idx] = img;
-    });
-    nutImagesRef.current = nutImgs;
-
     return () => {
-      if (window.cancelIdleCallback) window.cancelIdleCallback(idleId);
       window.removeEventListener("scroll", scrollHandler);
       clearInterval(batchInterval);
     };
@@ -91,17 +75,6 @@ export default function ScrollSequence() {
 
   useEffect(() => {
     let animationFrameId;
-
-    // Define 3D positions for floating real dry fruit objects
-    const nutItems = REAL_NUT_ASSETS.map((asset, index) => {
-      const angle = (index / REAL_NUT_ASSETS.length) * Math.PI * 2;
-      return {
-        ...asset,
-        baseX: 0.5 + Math.cos(angle) * 0.38,
-        baseY: 0.15 + (index * 0.13),
-        depth: 0.45 + (index % 5) * 0.15
-      };
-    });
 
     // Sparkling gold dust particles
     const particles = Array.from({ length: 40 }, () => ({
@@ -122,7 +95,7 @@ export default function ScrollSequence() {
     updateCanvasDimensions();
     window.addEventListener("resize", updateCanvasDimensions, { passive: true });
 
-    let autoFrame = 0;
+    let currentFrameFloat = 0;
 
     const render = () => {
       const canvas = canvasRef.current;
@@ -137,17 +110,24 @@ export default function ScrollSequence() {
       ctx.scale(dpr, dpr);
       ctx.clearRect(0, 0, width, height);
 
-      // Calculate scroll progress (0 to 1)
+      // Calculate exact 0 to 1 scroll progress across page
       const maxScroll = document.documentElement.scrollHeight - height;
       const scrollY = window.scrollY;
       const scrollProgress = maxScroll > 0 ? Math.min(1, Math.max(0, scrollY / maxScroll)) : 0;
 
       // ----------------------------------------------------
-      // LAYER 1: 3D SEQUENCE FRAME CANVAS (ezgif-frame-XXX.jpg)
-      // Dynamic combination of continuous auto-play + scroll progress
+      // 3D SEQUENCE FRAME CANVAS (ezgif-frame-001.jpg -> ezgif-frame-250.jpg)
+      // 1:1 Lerp-Smoothed Frame Scrubbing
       // ----------------------------------------------------
-      autoFrame = (autoFrame + 0.35 + scrollProgress * 0.5) % totalFrames;
-      const frameIndex = Math.floor(autoFrame);
+      const targetFrame = scrollProgress * (totalFrames - 1);
+      // Smooth dampening towards target frame for buttery 60fps feel
+      currentFrameFloat += (targetFrame - currentFrameFloat) * 0.2;
+
+      const frameIndex = Math.min(
+        totalFrames - 1,
+        Math.max(0, Math.round(currentFrameFloat))
+      );
+
       const frameImg = frameImagesRef.current[frameIndex] || frameImagesRef.current[0];
 
       if (frameImg && frameImg.complete && frameImg.width > 0) {
@@ -164,9 +144,7 @@ export default function ScrollSequence() {
         ctx.fillRect(0, 0, width, height);
       }
 
-      // ----------------------------------------------------
-      // LAYER 2: SPARKLING GOLD DUST PARTICLES
-      // ----------------------------------------------------
+      // SPARKLING GOLD DUST PARTICLES OVERLAY
       particles.forEach((p) => {
         p.y -= p.speedY;
         if (p.y < 0) p.y = 1;
