@@ -204,7 +204,7 @@ export default function GiftBoxBuilder({ products }) {
 
               <div style={{ padding: "0 20px 24px" }}>
                 <a
-                  href={`https://wa.me/919901844007?text=${encodeURIComponent(`Hello NutsHub! I would like to order the pre-made gift box: ${box.name} (${box.price}). Please share details.`)}`}
+                  href={`https://wa.me/919480517939?text=${encodeURIComponent(`Hello NutsHub! I would like to order the pre-made gift box: ${box.name} (${box.price}). Please share details.`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-primary"
@@ -415,7 +415,7 @@ export default function GiftBoxBuilder({ products }) {
             </p>
 
             <a
-              href={`https://wa.me/919901844007?text=${whatsappMsg}`}
+              href={`https://wa.me/919480517939?text=${whatsappMsg}`}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary"

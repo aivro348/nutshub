@@ -16,7 +16,7 @@ export default function WhatsAppButton() {
   return (
     <>
       <a
-        href="https://wa.me/919901844007?text=Hi%20NutsHub!%20I%27d%20like%20to%20place%20an%20order."
+        href="https://wa.me/919480517939?text=Hi%20NutsHub!%20I%27d%20like%20to%20place%20an%20order."
         target="_blank"
         rel="noopener noreferrer"
         className="whatsapp-fab"

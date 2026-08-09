@@ -78,7 +78,7 @@ export default function FAQPage() {
           Our store representatives are available daily from 10 AM to 10 PM to help you choose the best dry fruits or coordinate bulk orders.
         </p>
         <a 
-          href="https://wa.me/919901844007?text=Hi%20NutsHub!%20I%20have%20a%20question%20about%20my%20order." 
+          href="https://wa.me/919480517939?text=Hi%20NutsHub!%20I%20have%20a%20question%20about%20my%20order." 
           target="_blank"
           rel="noopener noreferrer"
           className="btn-primary" 

@@ -26,7 +26,7 @@ export default function ContactPage() {
     {
       icon: "📞",
       title: "Phone & WhatsApp",
-      lines: ["+91 99018 44007", "Fast doorstep delivery across Bangalore"]
+      lines: ["+91 94805 17939", "Fast doorstep delivery across Bangalore"]
     },
     {
       icon: "✉️",

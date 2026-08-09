@@ -83,7 +83,7 @@ export default function GiftBoxPage() {
             We provide custom logo branding, company message inserts, GST invoicing, and scheduled multi-address shipping across India.
           </p>
           <a
-            href="https://wa.me/919901844007?text=Hi%20NutsHub!%20I%20need%20a%20quote%20for%20bulk%20corporate%20gift%20boxes."
+            href="https://wa.me/919480517939?text=Hi%20NutsHub!%20I%20need%20a%20quote%20for%20bulk%20corporate%20gift%20boxes."
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary"
