@@ -17,12 +17,30 @@ export default function Home() {
 
       {/* LUXURY HERO HUD OVERLAY */}
       <section className="hero-section">
+        {/* GOLDEN LIGHT RAYS FROM TOP */}
+        <div className="hero-light-rays" aria-hidden="true" />
+
+        {/* FLOATING PRODUCT IMAGES — CORNER PARALLAX DRIFTS */}
+        <img src="/images/strawberry_dry.png" alt="" className="hero-float-img float-1" aria-hidden="true" />
+        <img src="/images/cashews.png" alt="" className="hero-float-img float-2" aria-hidden="true" />
+        <img src="/images/dates.png" alt="" className="hero-float-img float-3" aria-hidden="true" />
+        <img src="/images/almonds.png" alt="" className="hero-float-img float-4" aria-hidden="true" />
+        <img src="/images/pistachios.png" alt="" className="hero-float-img float-5" aria-hidden="true" />
+
         {/* TOP GLOW BADGE */}
         <div style={{ textAlign: "center", marginTop: "0.5rem" }}>
           <div className="hero-top-badge">
             <span className="badge-dot" />
             <span>THE NUTSHUB STANDARD • PANATHUR & KORAMANGALA</span>
           </div>
+        </div>
+
+        {/* HERO TAGLINE */}
+        <div className="hero-center-text">
+          <h1 className="hero-main-title">
+            Premium <span className="gold-shimmer">Dry Fruits</span> & Nuts
+          </h1>
+          <p className="hero-tagline">Handpicked from world-class orchards · Delivered fresh to your doorstep</p>
         </div>
 
         {/* BOTTOM HERO HUD CONTROLS & SCROLL PROMPT */}
@@ -326,6 +344,166 @@ export default function Home() {
           100% { transform: translateX(-50%); }
         }
 
+        /* HERO GOLDEN LIGHT RAYS */
+        .hero-light-rays {
+          position: absolute;
+          top: -80%;
+          left: 50%;
+          translate: -50% 0;
+          width: 140%;
+          height: 200%;
+          z-index: 1;
+          pointer-events: none;
+          background: conic-gradient(
+            from 90deg at 50% 0%,
+            transparent 40%,
+            rgba(223, 183, 108, 0.04) 44%,
+            transparent 48%,
+            transparent 52%,
+            rgba(223, 183, 108, 0.04) 56%,
+            transparent 60%,
+            transparent 69%,
+            rgba(223, 183, 108, 0.02) 72%,
+            transparent 75%
+          );
+          animation: raysGlow 6s ease-in-out infinite;
+        }
+
+        @keyframes raysGlow {
+          0%, 100% { opacity: 0.5; }
+          50% { opacity: 1; }
+        }
+
+        /* FLOATING PRODUCT IMAGES */
+        .hero-float-img {
+          position: absolute;
+          z-index: 2;
+          pointer-events: none;
+          filter: drop-shadow(0 10px 25px rgba(0,0,0,0.7));
+          opacity: 0.75;
+          object-fit: contain;
+        }
+
+        .float-1 {
+          top: 8%;
+          right: 3%;
+          width: 130px;
+          height: 130px;
+          animation: floatDrift1 8s ease-in-out infinite;
+          transform: rotate(15deg);
+        }
+
+        .float-2 {
+          top: 15%;
+          right: 12%;
+          width: 100px;
+          height: 100px;
+          animation: floatDrift2 10s ease-in-out infinite;
+          transform: rotate(-10deg);
+        }
+
+        .float-3 {
+          bottom: 25%;
+          left: 2%;
+          width: 110px;
+          height: 110px;
+          animation: floatDrift3 9s ease-in-out infinite;
+          transform: rotate(8deg);
+        }
+
+        .float-4 {
+          top: 12%;
+          left: 5%;
+          width: 90px;
+          height: 90px;
+          animation: floatDrift4 7s ease-in-out infinite;
+          transform: rotate(-20deg);
+          opacity: 0.6;
+        }
+
+        .float-5 {
+          bottom: 35%;
+          right: 6%;
+          width: 85px;
+          height: 85px;
+          animation: floatDrift2 11s ease-in-out infinite reverse;
+          transform: rotate(25deg);
+          opacity: 0.55;
+        }
+
+        @keyframes floatDrift1 {
+          0%, 100% { translate: 0 0; rotate: 15deg; }
+          33% { translate: -8px 12px; rotate: 20deg; }
+          66% { translate: 5px -8px; rotate: 10deg; }
+        }
+
+        @keyframes floatDrift2 {
+          0%, 100% { translate: 0 0; rotate: -10deg; }
+          50% { translate: 10px 15px; rotate: -5deg; }
+        }
+
+        @keyframes floatDrift3 {
+          0%, 100% { translate: 0 0; rotate: 8deg; }
+          33% { translate: 12px -10px; rotate: 15deg; }
+          66% { translate: -6px 8px; rotate: 3deg; }
+        }
+
+        @keyframes floatDrift4 {
+          0%, 100% { translate: 0 0; rotate: -20deg; }
+          50% { translate: -10px -12px; rotate: -15deg; }
+        }
+
+        /* HERO CENTER TEXT */
+        .hero-center-text {
+          text-align: center;
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          z-index: 5;
+          animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+        }
+
+        @keyframes fadeInUp {
+          from { opacity: 0; translate: 0 30px; }
+          to { opacity: 1; translate: 0 0; }
+        }
+
+        .hero-main-title {
+          font-family: var(--font-display);
+          font-size: clamp(2.8rem, 6vw, 5rem);
+          font-weight: 800;
+          color: #fff;
+          margin: 0;
+          line-height: 1.1;
+          text-shadow: 0 4px 40px rgba(0,0,0,0.6);
+        }
+
+        .gold-shimmer {
+          background: linear-gradient(135deg, #f0d78c, #b88d3b, #f0d78c);
+          background-size: 200% auto;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          animation: shimmerText 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmerText {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+
+        .hero-tagline {
+          color: rgba(255, 255, 255, 0.55);
+          font-size: clamp(0.85rem, 1.5vw, 1.05rem);
+          letter-spacing: 1px;
+          margin-top: 14px;
+          font-weight: 300;
+          animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
+        }
+
         /* MOBILE OPTIMIZATIONS (max-width: 768px) */
         @media (max-width: 768px) {
           .hero-section {
@@ -345,7 +523,7 @@ export default function Home() {
           }
 
           .hero-left-card {
-            display: none; /* Hide on mobile so 3D floating dry fruit bowl is 100% clear and unblocked */
+            display: none;
           }
 
           .hero-right-actions {
@@ -360,6 +538,14 @@ export default function Home() {
             padding: 12px 14px;
             font-size: 0.8rem;
             text-align: center;
+          }
+
+          .hero-float-img {
+            display: none;
+          }
+
+          .hero-main-title {
+            font-size: clamp(2rem, 8vw, 3rem);
           }
 
           .promo-gift-card {

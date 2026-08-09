@@ -1,67 +1,223 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+
 export default function PageHeroHeader({ 
   subtitle = "OUR COLLECTION", 
   title = "Premium Selections", 
   bgImage = "/images/hero_products.png",
   breadcrumb = "HOME / PRODUCTS"
 }) {
+  const heroRef = useRef(null);
+  const bgRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const bg = bgRef.current;
+      if (!bg) return;
+      const scrollY = window.scrollY;
+      // Parallax: background moves at 40% of scroll speed
+      bg.style.transform = `translateY(${scrollY * 0.4}px) scale(1.1)`;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <section className="page-hero-header" style={{
-      position: "relative",
-      width: "100%",
-      padding: "120px 20px 60px",
-      minHeight: "340px",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      textAlign: "center",
-      background: `linear-gradient(180deg, rgba(8, 5, 2, 0.65) 0%, rgba(5, 3, 2, 0.92) 100%), url('${bgImage}') center/cover no-repeat`,
-      borderBottom: "1px solid rgba(223, 183, 108, 0.3)",
-      boxSizing: "border-box",
-      overflow: "hidden"
-    }}>
-      {/* BREADCRUMB & TAG */}
-      <div style={{
-        fontSize: "0.78rem",
-        fontWeight: 700,
-        color: "#dfb76c",
-        letterSpacing: "3px",
-        textTransform: "uppercase",
-        marginBottom: "12px",
-        background: "rgba(13, 9, 5, 0.65)",
-        backdropFilter: "blur(8px)",
-        padding: "6px 18px",
-        borderRadius: "999px",
-        border: "1px solid rgba(223, 183, 108, 0.3)",
-        display: "inline-block"
-      }}>
-        {breadcrumb || subtitle}
+    <section className="page-hero-cinematic" ref={heroRef}>
+      {/* Parallax background */}
+      <div className="hero-bg-parallax" ref={bgRef}>
+        <img src={bgImage} alt="" loading="eager" />
       </div>
 
-      {/* MAIN TITLE */}
-      <h1 style={{
-        fontFamily: "var(--font-display)",
-        fontSize: "clamp(2.4rem, 5vw, 3.6rem)",
-        fontWeight: 800,
-        color: "#fff",
-        margin: "8px 0 0",
-        letterSpacing: "0.02em",
-        lineHeight: 1.15
-      }}>
-        {title}
-      </h1>
+      {/* Multi-layer overlays */}
+      <div className="hero-overlay-vignette" />
+      <div className="hero-overlay-gradient" />
 
-      {/* GOLD UNDERLINE ACCENT */}
-      <div style={{
-        width: "60px",
-        height: "3px",
-        background: "linear-gradient(90deg, #dfb76c 0%, #b88d3b 100%)",
-        marginTop: "16px",
-        borderRadius: "999px",
-        boxShadow: "0 0 10px rgba(223, 183, 108, 0.5)"
-      }} />
+      {/* Golden light rays from top */}
+      <div className="hero-light-rays" />
+
+      {/* Content */}
+      <div className="hero-content-inner">
+        <div className="hero-breadcrumb">
+          {breadcrumb.split(" / ").map((part, i, arr) => (
+            <span key={i}>
+              <span className={i === arr.length - 1 ? "breadcrumb-active" : "breadcrumb-muted"}>{part}</span>
+              {i < arr.length - 1 && <span className="breadcrumb-dot">•</span>}
+            </span>
+          ))}
+        </div>
+
+        <h1 className="hero-title-cinematic">{title}</h1>
+
+        <div className="hero-gold-accent" />
+
+        {subtitle && (
+          <p className="hero-subtitle-text">{subtitle}</p>
+        )}
+      </div>
+
+      <style jsx>{`
+        .page-hero-cinematic {
+          position: relative;
+          width: 100%;
+          min-height: 420px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          overflow: hidden;
+          padding: 140px 20px 80px;
+          box-sizing: border-box;
+        }
+
+        .hero-bg-parallax {
+          position: absolute;
+          inset: -20%;
+          z-index: 0;
+          will-change: transform;
+        }
+
+        .hero-bg-parallax img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          filter: brightness(0.25) saturate(1.2);
+        }
+
+        .hero-overlay-vignette {
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+          background: radial-gradient(ellipse at center, transparent 30%, rgba(5, 3, 2, 0.8) 100%);
+        }
+
+        .hero-overlay-gradient {
+          position: absolute;
+          inset: 0;
+          z-index: 2;
+          background: linear-gradient(
+            180deg,
+            rgba(8, 5, 2, 0.5) 0%,
+            rgba(5, 3, 2, 0.3) 50%,
+            rgba(10, 7, 4, 0.95) 100%
+          );
+        }
+
+        .hero-light-rays {
+          position: absolute;
+          top: -60%;
+          left: 50%;
+          translate: -50% 0;
+          width: 120%;
+          height: 160%;
+          z-index: 3;
+          background: conic-gradient(
+            from 90deg at 50% 0%,
+            transparent 42%,
+            rgba(223, 183, 108, 0.03) 45%,
+            transparent 48%,
+            transparent 52%,
+            rgba(223, 183, 108, 0.03) 55%,
+            transparent 58%
+          );
+          pointer-events: none;
+          animation: raysPulse 6s ease-in-out infinite;
+        }
+
+        @keyframes raysPulse {
+          0%, 100% { opacity: 0.6; }
+          50% { opacity: 1; }
+        }
+
+        .hero-content-inner {
+          position: relative;
+          z-index: 10;
+          animation: heroContentEntry 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        @keyframes heroContentEntry {
+          from { opacity: 0; translate: 0 30px; }
+          to { opacity: 1; translate: 0 0; }
+        }
+
+        .hero-breadcrumb {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 8px 20px;
+          border-radius: 999px;
+          background: rgba(13, 9, 5, 0.7);
+          backdrop-filter: blur(12px);
+          border: 1px solid rgba(223, 183, 108, 0.3);
+          margin-bottom: 20px;
+          font-size: 0.75rem;
+          font-weight: 700;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+        }
+
+        .breadcrumb-muted {
+          color: rgba(223, 183, 108, 0.6);
+        }
+
+        .breadcrumb-active {
+          color: #dfb76c;
+        }
+
+        .breadcrumb-dot {
+          color: rgba(223, 183, 108, 0.35);
+          margin: 0 2px;
+        }
+
+        .hero-title-cinematic {
+          font-family: var(--font-display);
+          font-size: clamp(2.6rem, 6vw, 4.2rem);
+          font-weight: 800;
+          color: #fff;
+          margin: 0;
+          letter-spacing: 0.02em;
+          line-height: 1.15;
+          text-wrap: balance;
+          text-shadow: 0 4px 30px rgba(0,0,0,0.5);
+        }
+
+        .hero-gold-accent {
+          width: 70px;
+          height: 3px;
+          background: linear-gradient(90deg, transparent, #dfb76c, transparent);
+          margin: 20px auto;
+          border-radius: 999px;
+          box-shadow: 0 0 15px rgba(223, 183, 108, 0.4);
+          animation: accentGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes accentGlow {
+          0%, 100% { box-shadow: 0 0 10px rgba(223, 183, 108, 0.3); width: 60px; }
+          50% { box-shadow: 0 0 25px rgba(223, 183, 108, 0.6); width: 80px; }
+        }
+
+        .hero-subtitle-text {
+          color: rgba(255, 255, 255, 0.6);
+          font-size: 0.9rem;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          font-weight: 400;
+          margin: 0;
+        }
+
+        @media (max-width: 768px) {
+          .page-hero-cinematic {
+            min-height: 320px;
+            padding: 120px 16px 60px;
+          }
+
+          .hero-title-cinematic {
+            font-size: clamp(2rem, 8vw, 3rem);
+          }
+        }
+      `}</style>
     </section>
   );
 }

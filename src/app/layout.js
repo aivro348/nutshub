@@ -1,6 +1,9 @@
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import LoadingScreen from "@/components/LoadingScreen";
+import CursorGlow from "@/components/CursorGlow";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 export const metadata = {
   metadataBase: new URL("https://nutshub.online"),
@@ -88,11 +91,14 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+        <LoadingScreen />
+        <CursorGlow />
         <Navbar />
         <div style={{ flex: "1 0 auto" }}>
           {children}
         </div>
         <Footer />
+        <WhatsAppButton />
       </body>
     </html>
   );

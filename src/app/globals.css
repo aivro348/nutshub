@@ -1805,6 +1805,12 @@
   }
 }
 
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 @keyframes goldShimmer {
   0%, 100% {
     opacity: 0.85;
@@ -1821,6 +1827,37 @@
   50% { transform: translateY(-4px); }
 }
 
+/* Primary Button — Luxury Gold Gradient */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.9rem 2rem;
+  background: linear-gradient(135deg, #b88d3b, #dfb76c, #b88d3b);
+  background-size: 200% auto;
+  color: #0a0704;
+  border: none;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-primary:hover {
+  translate: 0 -3px;
+  box-shadow: 0 12px 35px rgba(223, 183, 108, 0.4);
+  background-position: right center;
+}
+
+.btn-primary:active {
+  scale: 0.97;
+}
+
 /* Page Entrance Animation */
 .page-hero-header, .section-header {
   animation: fadeInUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -1829,29 +1866,6 @@
 /* Gold Accent Underline Glow Pulse */
 .gold-line {
   animation: goldShimmer 3s ease-in-out infinite;
-}
-
-/* Micro-Interaction Transitions */
-.product-card,
-.store-row-card,
-.btn-primary,
-.nav-link,
-button,
-a {
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease, background-color 0.35s ease !important;
-}
-
-/* Card Hover Lift */
-.product-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(223, 183, 108, 0.25);
-  border-color: rgba(223, 183, 108, 0.6) !important;
-}
-
-/* Primary Button Hover Spring */
-.btn-primary:hover {
-  transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 10px 30px rgba(223, 183, 108, 0.45);
 }
 
 /* Floating Badges & Icons */
@@ -1866,5 +1880,3 @@ a {
     transition-duration: 0.01ms !important;
   }
 }
-
-
