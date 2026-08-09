@@ -110,7 +110,7 @@ export default function Home() {
       <GlimpsesSection />
 
       {/* FEATURED PRODUCTS SECTION */}
-      <section className="section" style={{ padding: "80px 20px", background: "transparent" }}>
+      <section className="section" id="products" style={{ padding: "80px 20px", background: "transparent" }}>
         <div className="section-header" style={{ textAlign: "center", marginBottom: "40px" }}>
           <p className="section-label" style={{ color: "var(--color-accent)", textTransform: "uppercase", letterSpacing: "3px", fontSize: "0.85rem", fontWeight: 700 }}>
             Handpicked Bestsellers
@@ -132,7 +132,7 @@ export default function Home() {
       </section>
 
       {/* GIFT BOX PROMOTIONAL BANNER */}
-      <section style={{
+      <section id="gift-box" style={{
         maxWidth: "1200px",
         margin: "40px auto 80px",
         padding: "0 20px"
@@ -155,8 +155,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section className="section" style={{ padding: "80px 20px", background: "rgba(12, 9, 5, 0.75)", backdropFilter: "blur(12px)" }}>
+      {/* TESTIMONIALS / REVIEWS */}
+      <section className="section" id="reviews" style={{ padding: "80px 20px", background: "rgba(12, 9, 5, 0.75)", backdropFilter: "blur(12px)" }}>
         <div className="section-header" style={{ textAlign: "center", marginBottom: "40px" }}>
           <p className="section-label" style={{ color: "var(--color-accent)", textTransform: "uppercase", letterSpacing: "3px", fontSize: "0.85rem", fontWeight: 700 }}>
             Customer Stories
@@ -172,7 +172,7 @@ export default function Home() {
       </section>
 
       {/* FAQS */}
-      <section className="section" style={{ padding: "80px 20px", background: "transparent" }}>
+      <section className="section" id="faq" style={{ padding: "80px 20px", background: "transparent" }}>
         <div className="section-header" style={{ textAlign: "center", marginBottom: "40px" }}>
           <p className="section-label" style={{ color: "var(--color-accent)", textTransform: "uppercase", letterSpacing: "3px", fontSize: "0.85rem", fontWeight: 700 }}>
             Have Questions?

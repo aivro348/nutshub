@@ -69,7 +69,7 @@ export default function GlimpsesSection() {
   }, []);
 
   return (
-    <section className="section" id="glimpses" style={{ padding: "90px 20px", background: "transparent" }} ref={sectionRef}>
+    <section className="section" id="why-us" style={{ padding: "90px 20px", background: "transparent" }} ref={sectionRef}>
       <div className="section-header" style={{ textAlign: "center", marginBottom: "3.5rem" }}>
         <p className="section-label" style={{ color: "var(--color-accent)", textTransform: "uppercase", letterSpacing: "3px", fontSize: "0.85rem", fontWeight: 700 }}>
           The NutsHub Quality Standard
