@@ -64,13 +64,14 @@ export default function ReviewsPage() {
       {/* LUXURY HERO HEADER BANNER */}
       <PageHeroHeader
         breadcrumb="HOME / REVIEWS"
-        subtitle="CUSTOMER STORIES"
+        subtitle="5,000+ VERIFIED BANGALORE HOUSEHOLDS"
         title="Loved Across Bangalore"
         bgImage="/images/hero_products.png"
+        showFloatingImages={true}
       />
 
       {/* STATS COUNT */}
-      <section style={{ maxWidth: "1000px", margin: "60px auto 40px", padding: "0 20px" }}>
+      <section style={{ maxWidth: "1000px", margin: "50px auto 40px", padding: "0 20px" }}>
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
@@ -82,11 +83,11 @@ export default function ReviewsPage() {
               background: "rgba(18, 12, 6, 0.85)",
               backdropFilter: "blur(14px)",
               border: "1px solid rgba(223, 183, 108, 0.3)",
-              borderRadius: "var(--radius-md)",
+              borderRadius: "var(--radius-lg)",
               padding: "24px 20px",
               boxShadow: "0 10px 25px rgba(0,0,0,0.3)"
             }}>
-              <div style={{ fontSize: "2.2rem", fontWeight: 800, color: "#dfb76c", marginBottom: "4px" }}>{stat.value}</div>
+              <div style={{ fontSize: "2.4rem", fontWeight: 900, color: "#dfb76c", marginBottom: "4px", fontFamily: "var(--font-display)" }}>{stat.value}</div>
               <div style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.75)", textTransform: "uppercase", letterSpacing: "1.5px", fontWeight: 700 }}>{stat.label}</div>
             </div>
           ))}
@@ -115,7 +116,7 @@ export default function ReviewsPage() {
             <div key={idx} style={{
               background: "rgba(18, 12, 6, 0.85)",
               backdropFilter: "blur(16px)",
-              border: "1px solid rgba(223, 183, 108, 0.35)",
+              border: "1px solid rgba(223, 183, 108, 0.3)",
               borderRadius: "var(--radius-lg)",
               padding: "30px",
               display: "flex",

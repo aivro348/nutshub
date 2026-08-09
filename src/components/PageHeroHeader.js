@@ -6,7 +6,8 @@ export default function PageHeroHeader({
   subtitle = "OUR COLLECTION", 
   title = "Premium Selections", 
   bgImage = "/images/hero_products.png",
-  breadcrumb = "HOME / PRODUCTS"
+  breadcrumb = "HOME / PRODUCTS",
+  showFloatingImages = true
 }) {
   const heroRef = useRef(null);
   const bgRef = useRef(null);
@@ -37,6 +38,28 @@ export default function PageHeroHeader({
 
       {/* Golden light rays from top */}
       <div className="hero-light-rays" />
+
+      {/* Floating dry fruit badges on sides for luxury feel */}
+      {showFloatingImages && (
+        <>
+          <img
+            src="/images/cashews.png"
+            alt=""
+            className="hero-sub-float left-float"
+            aria-hidden="true"
+            loading="eager"
+            decoding="async"
+          />
+          <img
+            src="/images/almonds.png"
+            alt=""
+            className="hero-sub-float right-float"
+            aria-hidden="true"
+            loading="eager"
+            decoding="async"
+          />
+        </>
+      )}
 
       {/* Content */}
       <div className="hero-content-inner">
@@ -116,10 +139,10 @@ export default function PageHeroHeader({
           background: conic-gradient(
             from 90deg at 50% 0%,
             transparent 42%,
-            rgba(223, 183, 108, 0.03) 45%,
+            rgba(223, 183, 108, 0.04) 45%,
             transparent 48%,
             transparent 52%,
-            rgba(223, 183, 108, 0.03) 55%,
+            rgba(223, 183, 108, 0.04) 55%,
             transparent 58%
           );
           pointer-events: none;
@@ -129,6 +152,41 @@ export default function PageHeroHeader({
         @keyframes raysPulse {
           0%, 100% { opacity: 0.6; }
           50% { opacity: 1; }
+        }
+
+        .hero-sub-float {
+          position: absolute;
+          z-index: 4;
+          width: 110px;
+          height: 110px;
+          object-fit: contain;
+          pointer-events: none;
+          filter: drop-shadow(0 10px 25px rgba(0,0,0,0.7));
+          opacity: 0.7;
+        }
+
+        .left-float {
+          top: 25%;
+          left: 4%;
+          animation: subFloat1 8s ease-in-out infinite;
+          transform: rotate(-12deg);
+        }
+
+        .right-float {
+          top: 22%;
+          right: 4%;
+          animation: subFloat2 9s ease-in-out infinite;
+          transform: rotate(15deg);
+        }
+
+        @keyframes subFloat1 {
+          0%, 100% { translate: 0 0; rotate: -12deg; }
+          50% { translate: 8px 12px; rotate: -5deg; }
+        }
+
+        @keyframes subFloat2 {
+          0%, 100% { translate: 0 0; rotate: 15deg; }
+          50% { translate: -10px 10px; rotate: 8deg; }
         }
 
         .hero-content-inner {
@@ -211,6 +269,10 @@ export default function PageHeroHeader({
           .page-hero-cinematic {
             min-height: 320px;
             padding: 120px 16px 60px;
+          }
+
+          .hero-sub-float {
+            display: none;
           }
 
           .hero-title-cinematic {

@@ -54,6 +54,7 @@ export default function AboutPage() {
         subtitle="OUR HERITAGE & VISION"
         title="House of Dry Fruits"
         bgImage="/images/hero_products.png"
+        showFloatingImages={true}
       />
 
       {/* STORY SUBSECTION */}
@@ -83,6 +84,7 @@ export default function AboutPage() {
             <div key={store.id} className="store-row-card">
               {/* LEFT COLUMN: HIGH-CLARITY STORE PHOTO */}
               <div className="store-image-col">
+                <span className="store-badge-pill">{store.badge}</span>
                 <img
                   src={store.image}
                   alt={`${store.name} - NutsHub`}
@@ -159,15 +161,7 @@ export default function AboutPage() {
           gap: "30px"
         }}>
           {pillars.map((pillar, idx) => (
-            <div key={idx} style={{
-              background: "rgba(18, 12, 6, 0.75)",
-              backdropFilter: "blur(14px)",
-              border: "1px solid rgba(223, 183, 108, 0.25)",
-              borderRadius: "var(--radius-lg)",
-              padding: "40px 30px",
-              textAlign: "center",
-              boxShadow: "0 10px 30px rgba(0,0,0,0.3)"
-            }}>
+            <div key={idx} className="pillar-card-item">
               <div style={{ fontSize: "3rem", marginBottom: "20px" }}>{pillar.icon}</div>
               <h3 style={{ fontSize: "1.3rem", marginBottom: "15px", color: "var(--color-accent)", fontWeight: 700 }}>{pillar.title}</h3>
               <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.95rem", lineHeight: "1.65", margin: 0 }}>{pillar.desc}</p>
@@ -179,7 +173,7 @@ export default function AboutPage() {
       {/* DETAILED STORY */}
       <section style={{
         maxWidth: "950px",
-        margin: "0 auto 60px",
+        margin: "0 auto 80px",
         padding: "45px",
         background: "rgba(18, 12, 6, 0.85)",
         backdropFilter: "blur(16px)",
@@ -210,6 +204,13 @@ export default function AboutPage() {
           display: flex;
           align-items: stretch;
           min-height: 380px;
+          transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .store-row-card:hover {
+          transform: translateY(-6px);
+          border-color: rgba(223, 183, 108, 0.6);
+          box-shadow: 0 25px 60px rgba(0,0,0,0.6), 0 0 30px rgba(223, 183, 108, 0.15);
         }
 
         .store-image-col {
@@ -224,6 +225,7 @@ export default function AboutPage() {
           position: absolute;
           top: 16px;
           left: 16px;
+          z-index: 5;
           background: rgba(13, 9, 5, 0.85);
           backdrop-filter: blur(8px);
           border: 1px solid #dfb76c;
@@ -241,6 +243,23 @@ export default function AboutPage() {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
+        }
+
+        .pillar-card-item {
+          background: rgba(18, 12, 6, 0.75);
+          backdrop-filter: blur(14px);
+          border: 1px solid rgba(223, 183, 108, 0.25);
+          border-radius: var(--radius-lg);
+          padding: 40px 30px;
+          text-align: center;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+          transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .pillar-card-item:hover {
+          transform: translateY(-6px);
+          border-color: rgba(223, 183, 108, 0.6);
+          box-shadow: 0 20px 45px rgba(0,0,0,0.4), 0 0 20px rgba(223, 183, 108, 0.1);
         }
 
         @media (max-width: 850px) {
