@@ -21,6 +21,8 @@
     scrollbar-color: oklch(0.65 0.15 75) oklch(0.12 0.01 55);
     scrollbar-width: thin;
     background-color: #0a0704 !important;
+    max-width: 100vw;
+    overflow-x: hidden;
   }
 
   body {
@@ -29,6 +31,7 @@
     color: var(--color-text);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    max-width: 100vw;
     overflow-x: hidden;
     text-rendering: optimizeLegibility;
   }

@@ -7,6 +7,11 @@ export default function LoadingScreen() {
   const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
+    // Add loaded class to html to reveal floating images smoothly
+    if (typeof document !== 'undefined') {
+      document.documentElement.classList.add('loaded');
+    }
+
     // Start fade-out after 250ms for near-instant loading
     const t1 = setTimeout(() => setFadeOut(true), 250);
     // Remove from DOM after fade animation completes

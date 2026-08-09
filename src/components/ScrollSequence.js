@@ -238,7 +238,7 @@ export default function ScrollSequence() {
           left: 0;
           width: 100vw;
           height: 100vh;
-          z-index: -10;
+          z-index: -1;
           pointer-events: none;
         }
 
@@ -252,7 +252,7 @@ export default function ScrollSequence() {
         .bg-overlay {
           position: absolute;
           inset: 0;
-          background: radial-gradient(circle at 50% 50%, rgba(13, 9, 5, 0.35) 0%, rgba(5, 3, 2, 0.8) 100%);
+          background: radial-gradient(circle at 50% 50%, rgba(13, 9, 5, 0.2) 0%, rgba(5, 3, 2, 0.75) 100%);
           pointer-events: none;
         }
       `}</style>
