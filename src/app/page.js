@@ -12,9 +12,6 @@ import { PRODUCTS } from "@/data/products";
 export default function Home() {
   return (
     <main id="home" style={{ minHeight: "100vh", background: "transparent", color: "var(--color-text)" }}>
-      {/* 3D CANVAS SCROLL BACKGROUND ENGINE */}
-      <ScrollSequence />
-
       {/* LUXURY HERO HUD OVERLAY */}
       <section className="hero-section">
         {/* GOLDEN LIGHT RAYS FROM TOP */}

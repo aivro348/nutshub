@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import LoadingScreen from "@/components/LoadingScreen";
 import CursorGlow from "@/components/CursorGlow";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import ScrollSequence from "@/components/ScrollSequence";
 
 export const metadata = {
   metadataBase: new URL("https://nutshub.online"),
@@ -104,6 +105,7 @@ export default function RootLayout({ children }) {
       <body style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
         <LoadingScreen />
         <CursorGlow />
+        <ScrollSequence />
         <Navbar />
         <div style={{ flex: "1 0 auto" }}>
           {children}
