@@ -44,24 +44,34 @@ export default function ScrollSequence() {
       frames[index] = img;
     };
 
-    // Stage 1: Load frame 0 immediately
-    loadFrame(0);
+    // Stage 1: Load initial 10 frames eagerly for instant crisp rendering
+    for (let i = 0; i < 10; i++) loadFrame(i);
 
-    // Stage 2: Load keyframes 1 to 30
-    const t1 = setTimeout(() => {
-      for (let i = 1; i < 30; i++) loadFrame(i);
-    }, 100);
+    // Stage 2: Idle-load keyframes 10..40 after main thread is free
+    const idleCallback = window.requestIdleCallback || ((cb) => setTimeout(cb, 200));
+    const idleId = idleCallback(() => {
+      for (let i = 10; i < 40; i++) loadFrame(i);
+    });
 
-    // Stage 3: Progressive background batching for remaining frames
-    const t2 = setTimeout(() => {
-      let current = 30;
-      const batchInterval = setInterval(() => {
-        const end = Math.min(current + 20, totalFrames);
-        for (let i = current; i < end; i++) loadFrame(i);
-        current = end;
-        if (current >= totalFrames) clearInterval(batchInterval);
-      }, 60);
-    }, 300);
+    // Stage 3: On scroll or after 1.5s, progressively load remaining frames in small batches
+    let currentBatch = 40;
+    const loadRemaining = () => {
+      if (currentBatch >= totalFrames) return;
+      const end = Math.min(currentBatch + 15, totalFrames);
+      for (let i = currentBatch; i < end; i++) loadFrame(i);
+      currentBatch = end;
+    };
+
+    const scrollHandler = () => {
+      loadRemaining();
+      if (currentBatch >= totalFrames) {
+        window.removeEventListener("scroll", scrollHandler);
+      }
+    };
+    window.addEventListener("scroll", scrollHandler, { passive: true });
+
+    // Fallback timer to finish loading remaining frames in background
+    const batchInterval = setInterval(loadRemaining, 250);
 
     // 2. Preload Real Dry Fruits PNG Overlay Assets
     const nutImgs = [];
@@ -73,8 +83,9 @@ export default function ScrollSequence() {
     nutImagesRef.current = nutImgs;
 
     return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
+      if (window.cancelIdleCallback) window.cancelIdleCallback(idleId);
+      window.removeEventListener("scroll", scrollHandler);
+      clearInterval(batchInterval);
     };
   }, []);
 

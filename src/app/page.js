@@ -21,11 +21,11 @@ export default function Home() {
         <div className="hero-light-rays" aria-hidden="true" />
 
         {/* FLOATING PRODUCT IMAGES — CORNER PARALLAX DRIFTS */}
-        <img src="/images/strawberry_dry.png" alt="" className="hero-float-img float-1" aria-hidden="true" />
-        <img src="/images/cashews.png" alt="" className="hero-float-img float-2" aria-hidden="true" />
-        <img src="/images/dates.png" alt="" className="hero-float-img float-3" aria-hidden="true" />
-        <img src="/images/almonds.png" alt="" className="hero-float-img float-4" aria-hidden="true" />
-        <img src="/images/pistachios.png" alt="" className="hero-float-img float-5" aria-hidden="true" />
+        <img src="/images/strawberry_dry.png" alt="" className="hero-float-img float-1" aria-hidden="true" loading="eager" fetchpriority="high" decoding="async" />
+        <img src="/images/cashews.png" alt="" className="hero-float-img float-2" aria-hidden="true" loading="eager" fetchpriority="high" decoding="async" />
+        <img src="/images/dates.png" alt="" className="hero-float-img float-3" aria-hidden="true" loading="eager" fetchpriority="high" decoding="async" />
+        <img src="/images/almonds.png" alt="" className="hero-float-img float-4" aria-hidden="true" loading="eager" fetchpriority="high" decoding="async" />
+        <img src="/images/pistachios.png" alt="" className="hero-float-img float-5" aria-hidden="true" loading="eager" fetchpriority="high" decoding="async" />
 
         {/* TOP GLOW BADGE */}
         <div style={{ textAlign: "center", marginTop: "0.5rem" }}>
