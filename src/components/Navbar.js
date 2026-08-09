@@ -2,13 +2,12 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuActive, setMenuActive] = useState(false);
   const pathname = usePathname();
-  const router = useRouter();
 
   useEffect(() => {
     // Scroll listener for nav glassmorphism
@@ -25,33 +24,23 @@ export default function Navbar() {
     };
   }, []);
 
-  // Close menu when route changes
+  // Close mobile menu when route changes
   useEffect(() => {
     setMenuActive(false);
   }, [pathname]);
 
   const navItems = [
-    { name: "Home", href: "/", sectionId: "home" },
-    { name: "Products", href: "/products", sectionId: "products" },
-    { name: "Gift Box", href: "/gift-box", sectionId: "gift-box" },
-    { name: "About", href: "/about", sectionId: "why-us" },
-    { name: "Why Us", href: "/why-us", sectionId: "why-us" },
-    { name: "Reviews", href: "/reviews", sectionId: "reviews" },
-    { name: "FAQ", href: "/faq", sectionId: "faq" },
+    { name: "Home", href: "/" },
+    { name: "Products", href: "/products" },
+    { name: "Gift Box", href: "/gift-box" },
+    { name: "About", href: "/about" },
+    { name: "Why Us", href: "/why-us" },
+    { name: "Reviews", href: "/reviews" },
+    { name: "FAQ", href: "/faq" },
   ];
 
-  const handleNavClick = (e, item) => {
+  const handleLinkClick = () => {
     setMenuActive(false);
-
-    // If on home page and section exists, smooth scroll to it
-    if (pathname === "/") {
-      const section = document.getElementById(item.sectionId);
-      if (section) {
-        e.preventDefault();
-        section.scrollIntoView({ behavior: "smooth" });
-        return;
-      }
-    }
   };
 
   const isActive = (path) => pathname === path ? "active" : "";
@@ -73,7 +62,7 @@ export default function Navbar() {
           href="/"
           className="nav-brand"
           style={{ display: "flex", alignItems: "center" }}
-          onClick={() => setMenuActive(false)}
+          onClick={handleLinkClick}
         >
           <img
             src="/images/nutshub.jpg"
@@ -100,7 +89,7 @@ export default function Navbar() {
               <Link
                 href={item.href}
                 className={isActive(item.href)}
-                onClick={(e) => handleNavClick(e, item)}
+                onClick={handleLinkClick}
               >
                 {item.name}
               </Link>
@@ -110,7 +99,7 @@ export default function Navbar() {
             <Link
               href="/contact"
               className="nav-cta"
-              onClick={(e) => handleNavClick(e, { name: "Contact", href: "/contact", sectionId: "contact" })}
+              onClick={handleLinkClick}
             >
               Contact
             </Link>
