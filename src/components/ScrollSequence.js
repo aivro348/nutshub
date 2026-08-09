@@ -112,6 +112,16 @@ export default function ScrollSequence() {
       speedY: Math.random() * 0.0006 + 0.0002
     }));
 
+    const updateCanvasDimensions = () => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+    };
+    updateCanvasDimensions();
+    window.addEventListener("resize", updateCanvasDimensions, { passive: true });
+
     const render = () => {
       const canvas = canvasRef.current;
       if (!canvas) return;
@@ -121,10 +131,8 @@ export default function ScrollSequence() {
       const width = window.innerWidth;
       const height = window.innerHeight;
 
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
+      ctx.save();
       ctx.scale(dpr, dpr);
-
       ctx.clearRect(0, 0, width, height);
 
       // Calculate scroll progress (0 to 1)
@@ -204,12 +212,14 @@ export default function ScrollSequence() {
         ctx.restore();
       });
 
+      ctx.restore();
       animationFrameId = requestAnimationFrame(render);
     };
 
     render();
 
     return () => {
+      window.removeEventListener("resize", updateCanvasDimensions);
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
     };
   }, []);
