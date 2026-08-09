@@ -273,16 +273,17 @@ export default function PageHeroHeader({
 
         @media (max-width: 768px) {
           .page-hero-cinematic {
-            min-height: 320px;
-            padding: 120px 16px 60px;
+            min-height: 280px;
+            padding: 110px 16px 50px;
           }
 
           .hero-sub-float {
-            display: none;
+            display: none !important;
           }
 
           .hero-title-cinematic {
-            font-size: clamp(2rem, 8vw, 3rem);
+            font-size: clamp(1.8rem, 7vw, 2.6rem);
+            line-height: 1.2;
           }
         }
       `}</style>

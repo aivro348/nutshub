@@ -509,86 +509,68 @@ export default function Home() {
           .hero-section {
             min-height: 100dvh;
             height: auto;
-            padding: 100px 16px 30px;
-            gap: 20px;
+            padding: 100px 16px 40px;
+            gap: 16px;
+            box-sizing: border-box;
+          }
+
+          /* Hide floating fruit images on mobile to prevent text collision */
+          .hero-float-img {
+            display: none !important;
           }
 
           .hero-top-badge {
-            font-size: 0.68rem;
-            letter-spacing: 1.2px;
+            font-size: 0.64rem;
+            letter-spacing: 1px;
             padding: 6px 14px;
-            max-width: 92%;
+            max-width: 100%;
+            white-space: normal;
+            text-align: center;
+            line-height: 1.35;
           }
 
           .hero-main-title {
-            font-size: clamp(1.8rem, 7.5vw, 2.8rem);
-            line-height: 1.15;
+            font-size: clamp(1.75rem, 7vw, 2.4rem);
+            line-height: 1.18;
+            padding: 0 4px;
           }
 
           .hero-tagline {
             font-size: 0.85rem;
             margin-top: 10px;
-            line-height: 1.4;
-            max-width: 90%;
+            line-height: 1.45;
+            max-width: 100%;
           }
 
           .hero-hud-container {
             flex-direction: column;
             align-items: center;
-            gap: 16px;
+            gap: 14px;
             width: 100%;
+            box-sizing: border-box;
+            margin-top: auto;
           }
 
           .hero-left-card {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 16px;
-            max-width: 100%;
-            background: rgba(13, 9, 5, 0.7);
-            border-radius: 999px;
-          }
-
-          .hero-left-card p {
             display: none;
           }
 
           .hero-right-actions {
             width: 100%;
-            flex-direction: row;
-            justify-content: center;
+            flex-direction: column;
+            align-items: stretch;
             gap: 10px;
           }
 
           .hero-btn-shop, .hero-btn-gift {
-            flex: 1;
-            padding: 12px 10px;
-            font-size: 0.78rem;
-            text-align: center;
+            width: 100%;
+            display: flex;
+            align-items: center;
             justify-content: center;
-            white-space: nowrap;
-          }
-
-          .hero-float-img {
-            opacity: 0.45;
-          }
-
-          .float-1 {
-            top: 10%;
-            right: 2%;
-            width: 60px;
-            height: 60px;
-          }
-
-          .float-3 {
-            bottom: 18%;
-            left: 2%;
-            width: 55px;
-            height: 55px;
-          }
-
-          .float-2, .float-4, .float-5 {
-            display: none;
+            padding: 14px 20px;
+            font-size: 0.88rem;
+            text-align: center;
+            box-sizing: border-box;
           }
 
           .promo-gift-card {
@@ -599,7 +581,7 @@ export default function Home() {
           }
 
           .promo-gift-card h3 {
-            font-size: 1.7rem !important;
+            font-size: 1.6rem !important;
           }
 
           .promo-gift-card a {
@@ -609,7 +591,7 @@ export default function Home() {
           }
 
           .section-title {
-            font-size: 2rem !important;
+            font-size: 1.9rem !important;
           }
         }
       `}</style>
