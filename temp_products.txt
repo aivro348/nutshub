@@ -1,0 +1,126 @@
+<USER_REQUEST>
+Almonds & Nuts
+Almond USA (Code: 1000) – 250gms: Rs. 262.5 | 1 Kg: Rs. 1050
+
+Almond Jambo (Code: 1001) – 250gms: Rs. 335 | 1 Kg: Rs. 1340
+
+Almond Mamra (Code: 1008) – 250gms: Rs. 1000 | 1 Kg: Rs. 4000
+
+Almond Salted Fry (Code: 1027) – 250gms: Rs. 415 | 1 Kg: Rs. 1660
+
+Brazalian Nut (Code: 1023) – 250gms: Rs. 1065 | 1 Kg: Rs. 4260
+
+Hazel Nut (Code: 1025) – 250gms: Rs. 670 | 1 Kg: Rs. 2680
+
+Cashews
+Cashew 320 (Code: 1011) – 250gms: Rs. 325 | 1 Kg: Rs. 1300
+
+Cashew Broken (Code: 1012) – 250gms: Rs. 345 | 1 Kg: Rs. 1380
+
+Cashew Roasted (Code: 1014) – 250gms: Rs. 440 | 1 Kg: Rs. 1760
+
+Cashew 240 (Code: 1010) – 250gms: Rs. 405 | 1 Kg: Rs. 1620
+
+Cashew 180 (Code: 1009) – 250gms: Rs. 445 | 1 Kg: Rs. 1780
+
+Red Chilly Cashew (Code: 1018) – 250gms: Rs. 438 | 1 Kg: Rs. 1750
+
+Pistachios & Walnuts
+Pista Iran (Code: 1005) – 250gms: Rs. 470 | 1 Kg: Rs. 1880
+
+Pista USA (Code: 1004) – 250gms: Rs. 445 | 1 Kg: Rs. 1780
+
+Pista Non Shell Plain (Code: 1006) – 250gms: Rs. 800 | 1 Kg: Rs. 3200
+
+Walnut Giri (Code: 1003) – 250gms: Rs. 525 | 1 Kg: Rs. 2100
+
+Walnut - 2 (Code: 1040) – 250gms: Rs. 448 | 1 Kg: Rs. 1790
+
+Pecan Nut (Code: 1024) – 250gms: Rs. 825 | 1 Kg: Rs. 3300
+
+Raisins & Dates
+Indian Kishmish (Code: 2035) – 250gms: Rs. 165 | 1 Kg: Rs. 660
+
+Black Kishmish Seedless (Code: 2005) – 250gms: Rs. 190 | 1 Kg: Rs. 760
+
+Black Kishmish With Seed (Code: 2006) – 250gms: Rs. 175 | 1 Kg: Rs. 700
+
+Munaka (Code: 2002) – 250gms: Rs. 300 | 1 Kg: Rs. 1200
+
+Afgan Kishmish (Code: 2004) – 250gms: Rs. 245 | 1 Kg: Rs. 980
+
+Dry Dates Black (Code: 3000) – 250gms: Rs. 150 | 1 Kg: Rs. 600
+
+Dry Dates Yellow (Code: 3001) – 250gms: Rs. 150 | 1 Kg: Rs. 600
+
+Medjool Dates (Code: 3005) – Price: Rs. 1960 / Kg
+
+Ajwa Dates (Code: 3003) – Price: Rs. 1400 / Kg
+
+Mabroom Dates (Code: 3002) – Price: Rs. 1500 / Kg
+
+Saffawi Dates (Code: 3004) – Price: Rs. 900 / Kg
+
+Al Hasna Dates (Code: 3019) – Price: Rs. 640 / Kg
+
+Dried Fruits & Berries
+Black Berry (Code: 2030) – 250gms: Rs. 305 | 1 Kg: Rs. 1220
+<truncated 2751 bytes>
+s: Rs. 600 | 1 Kg: Rs. 2400
+
+Marati Moggu (Code: 8025) – 250gms: Rs. 275 | 1 Kg: Rs. 1100
+
+Jathipathiri (Code: 4015) – 250gms: Rs. 775 | 1 Kg: Rs. 3100
+
+Ajwain (Code: 4017) – 250gms: Rs. 225 | 1 Kg: Rs. 900
+
+Shahi Jeera (Code: 4009) – 250gms: Rs. 280 | 1 Kg: Rs. 1120
+
+Nutmeg (Code: 8006) – 250gms: Rs. 315 | 1 Kg: Rs. 1260
+
+Ellam (Cardamom) (Code: 4003) – 250gms: Rs. 1150 | 1 Kg: Rs. 4600
+
+Sugars, Sweets & Candies
+Cane Sugar / Jaggery (Code: 5008) – 250gms: Rs. 45 | 1 Kg: Rs. 180
+
+Herbal Sugar (Code: 8020) – 250gms: Rs. 65 | 1 Kg: Rs. 260
+
+Palm Jaggery (Code: 8011) – 250gms: Rs. 215 | 1 Kg: Rs. 860
+
+Makana (Code: 6000) – 250gms: Rs. 490 | 1 Kg: Rs. 1960
+
+Ginger Candy (Code: 2013) – 250gms: Rs. 235 | 1 Kg: Rs. 940
+
+Mango Candy (Code: 7009) – 250gms: Rs. 220 | 1 Kg: Rs. 880
+
+Rock Sugar Candy (Code: 5005) – 250gms: Rs. 70 | 1 Kg: Rs. 280
+
+Sounf Roasted (Code: 8010) – 250gms: Rs. 170 | 1 Kg: Rs. 680
+
+Stone Chocolate (Code: 7007) – 250gms: Rs. 200 | 1 Kg: Rs. 800
+
+Gems Chocolate Loose (Code: 7019) – 250gms: Rs. 200 | 1 Kg: Rs. 800
+
+Diamond Sugar (Code: 8005) – 250gms: Rs. 90 | 1 Kg: Rs. 360
+
+Mouth Freshner (Code: 4012) – 250gms: Rs. 150 | 1 Kg: Rs. 600
+
+Assorted Dry Fruits Gift Box – 430 gms | MRP: Rs. 950
+
+
+
+for all this generate images and also update it perfectly and also animate it 
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-08-01T16:28:38+05:30.
+
+The user's current state is as follows:
+Active Document: /Users/hrishi/Desktop/nutshub/src/components/SnackQuiz.js (LANGUAGE_JAVASCRIPT)
+Cursor is on line: 5
+Other open documents:
+- /Users/hrishi/Desktop/nutshub/src/components/InteractiveCashew.js (LANGUAGE_JAVASCRIPT)
+- /Users/hrishi/Desktop/nutshub/src/components/ProductCard.js (LANGUAGE_JAVASCRIPT)
+- /Users/hrishi/Desktop/nutshub/src/components/ProductGrid.js (LANGUAGE_JAVASCRIPT)
+- /Users/hrishi/Desktop/nutshub/src/components/ShowcaseScroller.js (LANGUAGE_JAVASCRIPT)
+- /Users/hrishi/Desktop/nutshub/.gitignore (LANGUAGE_UNSPECIFIED)
+</ADDITIONAL_METADATA>
