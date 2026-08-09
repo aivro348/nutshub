@@ -145,6 +145,85 @@ export default function Home() {
         </div>
       </section>
 
+      {/* BULK ORDERS & CORPORATE GIFTING SHOWCASE */}
+      <section id="bulk-orders" style={{
+        maxWidth: "1200px",
+        margin: "60px auto 80px",
+        padding: "0 20px"
+      }}>
+        <div className="bulk-order-card">
+          <div className="bulk-badge">
+            <span>📦 WHOLESALE & BULK ORDERS</span>
+          </div>
+
+          <h2 className="bulk-title">
+            Planning Bulk Orders or Corporate Gifting?
+          </h2>
+          <p className="bulk-subtitle">
+            Whether you need 50 gift hampers for an event, wholesale dry fruit supply for weddings, or custom logo corporate boxes with GST invoicing across India — NutsHub delivers factory-direct freshness at unbeatable bulk rates.
+          </p>
+
+          <div className="bulk-features-grid">
+            <div className="bulk-feature-item">
+              <div className="bulk-icon">🏷️</div>
+              <h4>Company Logo Branding</h4>
+              <p>Custom sleeve covers, printed ribbon wraps & personalized message cards inside every hamper.</p>
+            </div>
+
+            <div className="bulk-feature-item">
+              <div className="bulk-icon">💰</div>
+              <h4>Direct Wholesale Rates</h4>
+              <p>Tiered bulk discounts starting from 50+ units with official GST tax invoice for corporate claiming.</p>
+            </div>
+
+            <div className="bulk-feature-item">
+              <div className="bulk-icon">🚚</div>
+              <h4>Multi-Address Express Shipping</h4>
+              <p>We deliver directly to individual employee home addresses across Bangalore and pan-India.</p>
+            </div>
+
+            <div className="bulk-feature-item">
+              <div className="bulk-icon">✨</div>
+              <h4>100% Grade-A Quality Assurance</h4>
+              <p>Handpicked jumbo W180 cashews, Mamra almonds, Iranian pistachios, and Medjool dates.</p>
+            </div>
+          </div>
+
+          {/* QUICK WHATSAPP BULK QUOTE ACTIONS */}
+          <div className="bulk-cta-wrapper">
+            <span style={{ color: "#dfb76c", fontSize: "0.85rem", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase" }}>
+              Get Instant Wholesale Quote on WhatsApp:
+            </span>
+            <div className="bulk-cta-buttons">
+              <a
+                href="https://wa.me/919480517939?text=Hi%20NutsHub!%20I%20need%20a%20bulk%20order%20quote%20for%2050-100%20boxes."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bulk-btn-option"
+              >
+                Quote 50 – 100 Boxes ➔
+              </a>
+              <a
+                href="https://wa.me/919480517939?text=Hi%20NutsHub!%20I%20need%20a%20bulk%20order%20quote%20for%20100-500%20boxes."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bulk-btn-option"
+              >
+                Quote 100 – 500 Boxes ➔
+              </a>
+              <a
+                href="https://wa.me/919480517939?text=Hi%20NutsHub!%20I%20need%20a%20custom%20corporate%20gifting%20quote%20for%20500%2B%20boxes."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bulk-btn-highlight"
+              >
+                500+ Custom Hampers 🎁
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* TESTIMONIALS / REVIEWS */}
       <section className="section" id="reviews" style={{ padding: "80px 20px", background: "rgba(12, 9, 5, 0.75)", backdropFilter: "blur(12px)" }}>
         <div className="section-header" style={{ textAlign: "center", marginBottom: "40px" }}>
@@ -494,8 +573,159 @@ export default function Home() {
           animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
         }
 
+        /* BULK ORDERS & CORPORATE GIFTING SHOWCASE STYLES */
+        .bulk-order-card {
+          background: linear-gradient(145deg, rgba(25, 17, 9, 0.92), rgba(12, 8, 4, 0.96));
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border: 1px solid rgba(223, 183, 108, 0.35);
+          border-radius: var(--radius-lg);
+          padding: 50px 40px;
+          box-shadow: 0 25px 60px rgba(0,0,0,0.6), 0 0 35px rgba(223, 183, 108, 0.1);
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .bulk-badge {
+          display: inline-block;
+          padding: 6px 18px;
+          border-radius: 999px;
+          background: rgba(223, 183, 108, 0.15);
+          border: 1px solid rgba(223, 183, 108, 0.4);
+          color: #dfb76c;
+          font-size: 0.78rem;
+          font-weight: 700;
+          letter-spacing: 2px;
+          margin-bottom: 20px;
+        }
+
+        .bulk-title {
+          font-family: var(--font-display);
+          font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+          color: #fff;
+          margin: 0 0 16px;
+          line-height: 1.2;
+        }
+
+        .bulk-subtitle {
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 1rem;
+          line-height: 1.65;
+          max-width: 800px;
+          margin: 0 auto 35px;
+        }
+
+        .bulk-features-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+          gap: 20px;
+          margin-bottom: 35px;
+          text-align: left;
+        }
+
+        .bulk-feature-item {
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(223, 183, 108, 0.2);
+          border-radius: var(--radius-md);
+          padding: 22px;
+          transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .bulk-feature-item:hover {
+          transform: translateY(-4px);
+          border-color: rgba(223, 183, 108, 0.6);
+        }
+
+        .bulk-icon {
+          font-size: 1.8rem;
+          margin-bottom: 10px;
+        }
+
+        .bulk-feature-item h4 {
+          color: #dfb76c;
+          font-size: 1.02rem;
+          margin: 0 0 8px;
+          font-weight: 700;
+        }
+
+        .bulk-feature-item p {
+          color: rgba(255, 255, 255, 0.75);
+          font-size: 0.86rem;
+          line-height: 1.5;
+          margin: 0;
+        }
+
+        .bulk-cta-wrapper {
+          background: rgba(10, 7, 4, 0.6);
+          border: 1px solid rgba(223, 183, 108, 0.25);
+          border-radius: var(--radius-md);
+          padding: 24px 20px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 16px;
+        }
+
+        .bulk-cta-buttons {
+          display: flex;
+          gap: 12px;
+          flex-wrap: wrap;
+          justify-content: center;
+          width: 100%;
+        }
+
+        .bulk-btn-option {
+          padding: 12px 24px;
+          font-size: 0.86rem;
+          border-radius: 999px;
+          background: rgba(255, 255, 255, 0.08);
+          border: 1px solid rgba(223, 183, 108, 0.4);
+          color: #fff;
+          text-decoration: none;
+          font-weight: 600;
+          transition: all 0.3s ease;
+        }
+
+        .bulk-btn-option:hover {
+          background: rgba(223, 183, 108, 0.2);
+          border-color: #dfb76c;
+          color: #dfb76c;
+        }
+
+        .bulk-btn-highlight {
+          padding: 12px 28px;
+          font-size: 0.86rem;
+          border-radius: 999px;
+          background: linear-gradient(135deg, #dfb76c, #b88d3b);
+          color: #000;
+          text-decoration: none;
+          font-weight: 700;
+          box-shadow: 0 8px 20px rgba(223, 183, 108, 0.3);
+          transition: transform 0.3s ease;
+        }
+
+        .bulk-btn-highlight:hover {
+          transform: scale(1.04);
+        }
+
         /* MOBILE OPTIMIZATIONS (max-width: 768px) */
         @media (max-width: 768px) {
+          .bulk-order-card {
+            padding: 30px 18px;
+          }
+          .bulk-features-grid {
+            grid-template-columns: 1fr;
+            gap: 14px;
+          }
+          .bulk-cta-buttons {
+            flex-direction: column;
+          }
+          .bulk-btn-option, .bulk-btn-highlight {
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+          }
           .hero-section {
             min-height: 100dvh;
             height: auto;
