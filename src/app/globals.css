@@ -1773,11 +1773,11 @@
 }
 
 @media (max-width: 480px) {
-  .hero-title { font-size: 2rem; }
-  .section-title { font-size: 1.8rem; }
-  .testimonial-quote { font-size: 1.2rem; }
+  .hero-title { font-size: 1.8rem; }
+  .section-title { font-size: 1.7rem; }
+  .testimonial-quote { font-size: 1.1rem; }
   .contact-info-grid { grid-template-columns: 1fr; }
-  .products-grid { grid-template-columns: 1fr; }
+  .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .showcase-item { flex: 0 0 200px; }
 }
 

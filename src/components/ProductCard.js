@@ -106,6 +106,30 @@ export default function ProductCard({ product }) {
           transition: opacity 0.3s ease;
           border-radius: inherit;
         }
+
+        @media (max-width: 768px) {
+          .product-card-3d :global(.product-info) {
+            padding: 14px 12px;
+          }
+
+          .product-card-3d :global(.product-name) {
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+          }
+
+          .product-card-3d :global(.product-desc) {
+            font-size: 0.78rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.35;
+          }
+
+          .product-card-3d :global(.product-price) {
+            font-size: 0.9rem;
+          }
+        }
       `}</style>
     </Link>
   );
