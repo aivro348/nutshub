@@ -20,11 +20,12 @@
     scroll-padding-top: 95px;
     scrollbar-color: oklch(0.65 0.15 75) oklch(0.12 0.01 55);
     scrollbar-width: thin;
+    background-color: #0a0704 !important;
   }
 
   body {
     min-height: 100dvh;
-    background-color: var(--color-bg);
+    background-color: #0a0704 !important;
     color: var(--color-text);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

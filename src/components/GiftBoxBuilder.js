@@ -314,7 +314,7 @@ export default function GiftBoxBuilder({ products }) {
                     key={idx}
                     onClick={() => setActiveSlotIndex(idx)}
                     style={{
-                      height: "120px",
+                      minHeight: "135px",
                       borderRadius: "var(--radius-md)",
                       border: isActive ? "2px solid #dfb76c" : item ? "1px solid rgba(223, 183, 108, 0.4)" : "2px dashed rgba(255,255,255,0.2)",
                       background: isActive ? "rgba(223, 183, 108, 0.12)" : item ? "rgba(30, 20, 10, 0.8)" : "rgba(15, 10, 5, 0.4)",
@@ -324,17 +324,23 @@ export default function GiftBoxBuilder({ products }) {
                       justifyContent: "center",
                       cursor: "pointer",
                       position: "relative",
-                      padding: "8px",
+                      padding: "24px 8px 10px",
                       transition: "all 0.3s ease"
                     }}
                   >
                     <span style={{
                       position: "absolute",
                       top: "6px",
-                      left: "8px",
-                      fontSize: "0.75rem",
-                      fontWeight: "700",
-                      color: isActive ? "#dfb76c" : "rgba(255,255,255,0.5)"
+                      left: "6px",
+                      fontSize: "0.7rem",
+                      fontWeight: "800",
+                      background: isActive ? "rgba(223, 183, 108, 0.25)" : "rgba(0,0,0,0.6)",
+                      border: isActive ? "1px solid #dfb76c" : "1px solid rgba(255,255,255,0.15)",
+                      color: isActive ? "#dfb76c" : "rgba(255,255,255,0.7)",
+                      padding: "2px 7px",
+                      borderRadius: "6px",
+                      lineHeight: "1.2",
+                      zIndex: 3
                     }}>
                       #{idx + 1}
                     </span>
@@ -346,9 +352,9 @@ export default function GiftBoxBuilder({ products }) {
                           title="Remove item"
                           style={{
                             position: "absolute",
-                            top: "4px",
+                            top: "6px",
                             right: "6px",
-                            background: "rgba(255,0,0,0.6)",
+                            background: "rgba(255,0,0,0.7)",
                             border: "none",
                             color: "#fff",
                             borderRadius: "50%",
@@ -356,7 +362,8 @@ export default function GiftBoxBuilder({ products }) {
                             height: "20px",
                             fontSize: "0.75rem",
                             cursor: "pointer",
-                            lineHeight: "1"
+                            lineHeight: "1",
+                            zIndex: 4
                           }}
                         >
                           ✕
@@ -364,17 +371,17 @@ export default function GiftBoxBuilder({ products }) {
                         <img
                           src={item.image}
                           alt={item.name}
-                          style={{ width: "45px", height: "45px", objectFit: "contain", marginBottom: "4px" }}
+                          style={{ width: "42px", height: "42px", objectFit: "contain", marginBottom: "4px" }}
                         />
-                        <div style={{ fontSize: "0.8rem", fontWeight: "700", color: "#fff", textAlign: "center", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: "90%" }}>
+                        <div style={{ fontSize: "0.8rem", fontWeight: "700", color: "#fff", textAlign: "center", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: "95%" }}>
                           {item.name}
                         </div>
-                        <div style={{ fontSize: "0.75rem", color: "#dfb76c" }}>{item.price} (250g)</div>
+                        <div style={{ fontSize: "0.73rem", color: "#dfb76c", marginTop: "2px" }}>{item.price} (250g)</div>
                       </>
                     ) : (
-                      <div style={{ textAlign: "center" }}>
-                        <div style={{ fontSize: "1.5rem", color: isActive ? "#dfb76c" : "rgba(255,255,255,0.3)" }}>+</div>
-                        <div style={{ fontSize: "0.75rem", color: isActive ? "#dfb76c" : "rgba(255,255,255,0.4)" }}>
+                      <div style={{ textAlign: "center", marginTop: "6px" }}>
+                        <div style={{ fontSize: "1.4rem", color: isActive ? "#dfb76c" : "rgba(255,255,255,0.3)" }}>+</div>
+                        <div style={{ fontSize: "0.73rem", color: isActive ? "#dfb76c" : "rgba(255,255,255,0.4)" }}>
                           {isActive ? "Active Slot" : "Empty Slot"}
                         </div>
                       </div>
