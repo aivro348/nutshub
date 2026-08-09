@@ -65,7 +65,8 @@ export default function RootLayout({ children }) {
         <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
         <style dangerouslySetInnerHTML={{ __html: `
-          html, body { background-color: #0a0704 !important; }
+          html { background-color: #0a0704 !important; }
+          body { background-color: transparent !important; }
           .hero-float-img, .hero-sub-float { opacity: 0; }
           html.loaded .hero-float-img, html.loaded .hero-sub-float { opacity: 0.75; transition: opacity 0.6s ease; }
           @media (max-width: 768px) {

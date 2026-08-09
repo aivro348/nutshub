@@ -67,6 +67,15 @@ export default function ScrollSequence() {
     };
     window.addEventListener("scroll", scrollHandler, { passive: true });
 
+    // 2. Preload Real Dry Fruits PNG Overlay Assets
+    const nutImgs = [];
+    REAL_NUT_ASSETS.forEach((asset, idx) => {
+      const img = new Image();
+      img.src = asset.src;
+      nutImgs[idx] = img;
+    });
+    nutImagesRef.current = nutImgs;
+
     return () => {
       window.removeEventListener("scroll", scrollHandler);
       clearInterval(batchInterval);
@@ -75,6 +84,17 @@ export default function ScrollSequence() {
 
   useEffect(() => {
     let animationFrameId;
+
+    // Define 3D parallax positions for floating real dry fruit objects
+    const nutItems = REAL_NUT_ASSETS.map((asset, index) => {
+      const angle = (index / REAL_NUT_ASSETS.length) * Math.PI * 2;
+      return {
+        ...asset,
+        baseX: 0.12 + (index % 2 === 0 ? (index * 0.08) : 0.6 + (index * 0.04)),
+        baseY: 0.15 + ((index * 0.18) % 0.85),
+        depth: 0.6 + (index % 4) * 0.15
+      };
+    });
 
     // Sparkling gold dust particles
     const particles = Array.from({ length: 40 }, () => ({
@@ -116,11 +136,10 @@ export default function ScrollSequence() {
       const scrollProgress = maxScroll > 0 ? Math.min(1, Math.max(0, scrollY / maxScroll)) : 0;
 
       // ----------------------------------------------------
-      // 3D SEQUENCE FRAME CANVAS (ezgif-frame-001.jpg -> ezgif-frame-250.jpg)
+      // LAYER 1: 3D SEQUENCE FRAME CANVAS (ezgif-frame-001.jpg -> ezgif-frame-250.jpg)
       // 1:1 Lerp-Smoothed Frame Scrubbing
       // ----------------------------------------------------
       const targetFrame = scrollProgress * (totalFrames - 1);
-      // Smooth dampening towards target frame for buttery 60fps feel
       currentFrameFloat += (targetFrame - currentFrameFloat) * 0.2;
 
       const frameIndex = Math.min(
@@ -136,7 +155,6 @@ export default function ScrollSequence() {
         const y = (height / 2) - (frameImg.height / 2) * scale;
         ctx.drawImage(frameImg, x, y, frameImg.width * scale, frameImg.height * scale);
       } else {
-        // Fallback Dark Background Gradient
         const bgGrad = ctx.createRadialGradient(width / 2, height / 2, 100, width / 2, height / 2, Math.max(width, height));
         bgGrad.addColorStop(0, "#160e07");
         bgGrad.addColorStop(1, "#050302");
@@ -144,7 +162,9 @@ export default function ScrollSequence() {
         ctx.fillRect(0, 0, width, height);
       }
 
-      // SPARKLING GOLD DUST PARTICLES OVERLAY
+      // ----------------------------------------------------
+      // LAYER 2: SPARKLING GOLD DUST PARTICLES OVERLAY
+      // ----------------------------------------------------
       particles.forEach((p) => {
         p.y -= p.speedY;
         if (p.y < 0) p.y = 1;
@@ -158,6 +178,39 @@ export default function ScrollSequence() {
         ctx.shadowBlur = 6;
         ctx.fill();
         ctx.shadowBlur = 0;
+      });
+
+      // ----------------------------------------------------
+      // LAYER 3: 3D FLOATING DRY FRUIT OBJECTS OVERLAY
+      // (Almonds, Cashews, Pistachios, Dates, Strawberries)
+      // ----------------------------------------------------
+      nutItems.forEach((nut, idx) => {
+        const img = nutImagesRef.current[idx];
+        if (!img || !img.complete || !img.width) return;
+
+        const scrollOffset = (scrollProgress * 1.5) % 1;
+        let currentY = ((nut.baseY - scrollProgress * 1.1 + scrollOffset) % 1.2);
+        if (currentY < -0.1) currentY += 1.2;
+
+        const x = (nut.baseX * width) + Math.sin(scrollY * 0.0015 + idx) * 30;
+        const y = currentY * height;
+
+        const isMobile = width < 768;
+        const scale = nut.depth * (isMobile ? 0.45 : 0.95);
+        const drawW = nut.size * scale;
+        const drawH = nut.size * scale;
+        const rotationAngle = (scrollY * 0.002 * (idx % 2 === 0 ? 1 : -1)) + (idx * 0.5);
+
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(rotationAngle);
+        ctx.shadowColor = "rgba(0, 0, 0, 0.75)";
+        ctx.shadowBlur = 20;
+        ctx.shadowOffsetY = 12;
+        ctx.globalAlpha = isMobile ? 0.35 : 0.85;
+
+        ctx.drawImage(img, -drawW / 2, -drawH / 2, drawW, drawH);
+        ctx.restore();
       });
 
       ctx.restore();
