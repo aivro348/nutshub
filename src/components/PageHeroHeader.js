@@ -39,34 +39,6 @@ export default function PageHeroHeader({
       {/* Golden light rays from top */}
       <div className="hero-light-rays" />
 
-      {/* Floating dry fruit badges on sides for luxury feel */}
-      {showFloatingImages && (
-        <>
-          <img
-            src="/images/cashews.png"
-            alt=""
-            className="hero-sub-float left-float"
-            width="110"
-            height="110"
-            style={{ width: "110px", height: "110px" }}
-            aria-hidden="true"
-            loading="eager"
-            decoding="async"
-          />
-          <img
-            src="/images/almonds.png"
-            alt=""
-            className="hero-sub-float right-float"
-            width="110"
-            height="110"
-            style={{ width: "110px", height: "110px" }}
-            aria-hidden="true"
-            loading="eager"
-            decoding="async"
-          />
-        </>
-      )}
-
       {/* Content */}
       <div className="hero-content-inner">
         <div className="hero-breadcrumb">

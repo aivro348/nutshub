@@ -122,6 +122,8 @@ export default function ScrollSequence() {
     updateCanvasDimensions();
     window.addEventListener("resize", updateCanvasDimensions, { passive: true });
 
+    let autoFrame = 0;
+
     const render = () => {
       const canvas = canvasRef.current;
       if (!canvas) return;
@@ -142,12 +144,11 @@ export default function ScrollSequence() {
 
       // ----------------------------------------------------
       // LAYER 1: 3D SEQUENCE FRAME CANVAS (ezgif-frame-XXX.jpg)
+      // Dynamic combination of continuous auto-play + scroll progress
       // ----------------------------------------------------
-      const targetFrameIndex = Math.min(
-        totalFrames - 1,
-        Math.floor(scrollProgress * totalFrames)
-      );
-      const frameImg = frameImagesRef.current[targetFrameIndex] || frameImagesRef.current[0];
+      autoFrame = (autoFrame + 0.35 + scrollProgress * 0.5) % totalFrames;
+      const frameIndex = Math.floor(autoFrame);
+      const frameImg = frameImagesRef.current[frameIndex] || frameImagesRef.current[0];
 
       if (frameImg && frameImg.complete && frameImg.width > 0) {
         const scale = Math.max(width / frameImg.width, height / frameImg.height);
@@ -179,37 +180,6 @@ export default function ScrollSequence() {
         ctx.shadowBlur = 6;
         ctx.fill();
         ctx.shadowBlur = 0;
-      });
-
-      // ----------------------------------------------------
-      // LAYER 3: FLOATING REAL DRY FRUITS OVERLAY (almonds, cashews, pista, dates)
-      // ----------------------------------------------------
-      nutItems.forEach((nut, idx) => {
-        const img = nutImagesRef.current[idx];
-        if (!img || !img.complete) return;
-
-        const scrollOffset = (scrollProgress * 2.2) % 1;
-        let currentY = ((nut.baseY - scrollProgress * 1.3 + scrollOffset) % 1.2);
-        if (currentY < -0.1) currentY += 1.2;
-
-        const x = (nut.baseX * width) + Math.sin(scrollY * 0.002 + idx) * 25;
-        const y = currentY * height;
-
-        const scale = nut.depth * (width < 768 ? 0.65 : 1);
-        const drawW = nut.size * scale;
-        const drawH = nut.size * scale;
-        const rotationAngle = (scrollY * 0.0025 * (idx % 2 === 0 ? 1 : -1)) + (idx * 0.4);
-
-        ctx.save();
-        ctx.translate(x, y);
-        ctx.rotate(rotationAngle);
-
-        ctx.shadowColor = "rgba(0, 0, 0, 0.7)";
-        ctx.shadowBlur = 18;
-        ctx.shadowOffsetY = 10;
-
-        ctx.drawImage(img, -drawW / 2, -drawH / 2, drawW, drawH);
-        ctx.restore();
       });
 
       ctx.restore();
