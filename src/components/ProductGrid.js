@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition, useMemo, useEffect, useRef } from "react";
+import { useState, useTransition, useMemo } from "react";
 import ProductCard from "./ProductCard";
 
 export default function ProductGrid({ products }) {
@@ -8,10 +8,7 @@ export default function ProductGrid({ products }) {
   const [activeCategory, setActiveCategory] = useState("all");
   const [showAll, setShowAll] = useState(false);
   const [isPending, startTransition] = useTransition();
-  const [visibleCards, setVisibleCards] = useState(new Set());
-  const gridRef = useRef(null);
 
-  // Categories list
   const categories = [
     { id: "all", label: "All Products" },
     { id: "premium", label: "Premium Selection" },
@@ -19,7 +16,6 @@ export default function ProductGrid({ products }) {
     { id: "bestseller", label: "Bestsellers" }
   ];
 
-  // Search/Filter matching
   const filteredProducts = useMemo(() => {
     return products.filter((p) => {
       const matchesSearch =
@@ -34,30 +30,6 @@ export default function ProductGrid({ products }) {
     });
   }, [products, searchTerm, activeCategory]);
 
-  // Staggered scroll reveal with Intersection Observer
-  useEffect(() => {
-    const grid = gridRef.current;
-    if (!grid) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const idx = entry.target.dataset.idx;
-            setVisibleCards((prev) => new Set([...prev, idx]));
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
-    );
-
-    const cards = grid.querySelectorAll(".product-card-wrapper");
-    cards.forEach((card) => observer.observe(card));
-
-    return () => observer.disconnect();
-  }, [filteredProducts, showAll]);
-
   const handleSearchChange = (e) => {
     const value = e.target.value;
     startTransition(() => {
@@ -68,9 +40,10 @@ export default function ProductGrid({ products }) {
   const handleCategorySelect = (categoryId) => {
     startTransition(() => {
       setActiveCategory(categoryId);
-      setVisibleCards(new Set());
     });
   };
+
+  const displayedProducts = showAll ? filteredProducts : filteredProducts.slice(0, 10);
 
   return (
     <div className="product-grid-container">
@@ -129,14 +102,9 @@ export default function ProductGrid({ products }) {
       {/* Grid Display */}
       {filteredProducts.length > 0 ? (
         <>
-          <div className="products-grid" ref={gridRef}>
-            {(showAll ? filteredProducts : filteredProducts.slice(0, 10)).map((p, idx) => (
-              <div
-                key={p.id}
-                className={`product-card-wrapper ${visibleCards.has(String(idx)) ? 'revealed' : ''}`}
-                data-idx={idx}
-                style={{ transitionDelay: `${(idx % 5) * 80}ms` }}
-              >
+          <div className="products-grid">
+            {displayedProducts.map((p) => (
+              <div key={p.id} className="product-card-wrapper revealed">
                 <ProductCard product={p} />
               </div>
             ))}
@@ -145,10 +113,7 @@ export default function ProductGrid({ products }) {
           {filteredProducts.length > 10 && (
             <div style={{ textAlign: 'center', marginTop: 'var(--space-3xl)' }}>
               <button 
-                onClick={() => {
-                  setShowAll(!showAll);
-                  setVisibleCards(new Set());
-                }}
+                onClick={() => setShowAll(!showAll)}
                 className="btn-see-all"
               >
                 {showAll ? 'See Less' : `See All ${filteredProducts.length} Products`}
@@ -181,12 +146,12 @@ export default function ProductGrid({ products }) {
           color: var(--color-text);
           font-size: 1rem;
           outline: none;
-          transition: border-color 0.4s ease, box-shadow 0.4s ease;
+          transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .search-input-premium:focus {
           border-color: rgba(223, 183, 108, 0.6);
-          box-shadow: 0 0 20px rgba(223, 183, 108, 0.1), 0 0 40px rgba(223, 183, 108, 0.05);
+          box-shadow: 0 0 20px rgba(223, 183, 108, 0.1);
         }
 
         .search-icon {
@@ -200,7 +165,7 @@ export default function ProductGrid({ products }) {
 
         .search-loading {
           position: absolute;
-          right: 1.5rem;
+          right: 1rem;
           top: 50%;
           translate: 0 -50%;
         }
@@ -210,75 +175,71 @@ export default function ProductGrid({ products }) {
           width: 8px;
           height: 8px;
           border-radius: 50%;
-          background: var(--color-accent);
-          animation: searchPulse 0.8s ease-in-out infinite;
+          background: #dfb76c;
+          animation: pulse 1s ease-in-out infinite;
         }
 
-        @keyframes searchPulse {
-          0%, 100% { scale: 1; opacity: 0.5; }
-          50% { scale: 1.5; opacity: 1; }
+        @keyframes pulse {
+          0%, 100% { opacity: 0.3; transform: scale(0.8); }
+          50% { opacity: 1; transform: scale(1.2); }
         }
 
         .category-tab {
           padding: 0.6rem 1.4rem;
           border-radius: 999px;
-          font-size: 0.82rem;
-          font-weight: 600;
-          letter-spacing: 0.06em;
-          text-transform: uppercase;
-          border: 1px solid rgba(223, 183, 108, 0.15);
-          background: transparent;
-          color: var(--color-text-muted);
+          background: rgba(18, 12, 6, 0.6);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          color: rgba(255, 255, 255, 0.6);
+          font-size: 0.88rem;
+          font-weight: 500;
           cursor: pointer;
-          transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+          transition: all 0.2s ease;
         }
 
         .category-tab:hover {
-          border-color: rgba(223, 183, 108, 0.5);
-          color: var(--color-accent);
-          background: rgba(223, 183, 108, 0.06);
+          color: #dfb76c;
+          border-color: rgba(223, 183, 108, 0.3);
         }
 
         .category-tab.active {
-          border-color: var(--color-accent);
           background: linear-gradient(135deg, #b88d3b, #dfb76c);
           color: #0a0704;
-          box-shadow: 0 4px 16px rgba(223, 183, 108, 0.25);
+          border-color: transparent;
+          font-weight: 700;
+          box-shadow: 0 4px 14px rgba(223, 183, 108, 0.25);
+        }
+
+        .products-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+          gap: 25px;
         }
 
         .product-card-wrapper {
-          opacity: 0;
-          translate: 0 30px;
-          transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-                      translate 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .product-card-wrapper.revealed {
           opacity: 1;
-          translate: 0 0;
+          transform: translateY(0);
+          transition: opacity 0.2s ease, transform 0.2s ease;
         }
 
         .btn-see-all {
-          padding: 1rem 2.5rem;
-          font-size: 0.95rem;
           display: inline-flex;
           align-items: center;
-          gap: 0.6rem;
-          background: transparent;
-          border: 1px solid rgba(223, 183, 108, 0.4);
-          color: var(--color-accent);
+          gap: 8px;
+          padding: 0.9rem 2.2rem;
           border-radius: 999px;
+          background: rgba(18, 12, 6, 0.8);
+          border: 1px solid rgba(223, 183, 108, 0.3);
+          color: #dfb76c;
           font-weight: 600;
-          letter-spacing: 0.04em;
+          font-size: 0.92rem;
           cursor: pointer;
-          transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+          transition: all 0.25s ease;
         }
 
         .btn-see-all:hover {
-          background: rgba(223, 183, 108, 0.08);
-          border-color: var(--color-accent);
-          translate: 0 -2px;
-          box-shadow: 0 8px 24px rgba(223, 183, 108, 0.15);
+          background: rgba(223, 183, 108, 0.15);
+          border-color: rgba(223, 183, 108, 0.6);
+          transform: translateY(-2px);
         }
       `}</style>
     </div>
