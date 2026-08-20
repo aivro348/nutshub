@@ -32,9 +32,10 @@ export default function ScrollSequence() {
     frameImagesRef.current = frames;
 
     // 1. Eagerly preload all 250 frames from 001 to 250 for instant scroll scrubbing
-    const loadFrame = (index) => {
+    const loadFrame = (index, isEager = false) => {
       if (frames[index]) return;
       const img = new Image();
+      if (!isEager) img.fetchPriority = "low";
       const paddedIndex = String(index + 1).padStart(3, '0');
       img.src = `/ezgif-606e679e899d5166-jpg/ezgif-frame-${paddedIndex}.jpg`;
 
@@ -45,19 +46,19 @@ export default function ScrollSequence() {
       frames[index] = img;
     };
 
-    // Stage 1: Load initial 30 frames eagerly
-    for (let i = 0; i < 30; i++) loadFrame(i);
+    // Stage 1: Load initial 5 frames eagerly
+    for (let i = 0; i < 5; i++) loadFrame(i, true);
 
-    // Stage 2: Fast progressive load for all remaining 220 frames
-    let currentBatch = 30;
+    // Stage 2: Fast progressive load for all remaining frames
+    let currentBatch = 5;
     const loadRemaining = () => {
       if (currentBatch >= totalFrames) return;
-      const end = Math.min(currentBatch + 30, totalFrames);
-      for (let i = currentBatch; i < end; i++) loadFrame(i);
+      const end = Math.min(currentBatch + 10, totalFrames);
+      for (let i = currentBatch; i < end; i++) loadFrame(i, false);
       currentBatch = end;
     };
 
-    const batchInterval = setInterval(loadRemaining, 100);
+    const batchInterval = setInterval(loadRemaining, 300);
 
     const scrollHandler = () => {
       loadRemaining();

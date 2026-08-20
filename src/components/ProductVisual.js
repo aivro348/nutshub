@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 export default function ProductVisual({ product, width = "100%", height = "100%", zoomable = true }) {
   const [zoomState, setZoomState] = useState({ isZoomed: false, originX: 50, originY: 50 });
@@ -35,14 +36,12 @@ export default function ProductVisual({ product, width = "100%", height = "100%"
         borderRadius: 'inherit'
       }}
     >
-      <img 
+      <Image 
         src={src} 
         alt={product?.name || "NutsHub Dry Fruit"} 
-        loading="lazy" 
-        decoding="async"
+        fill
+        sizes="(max-width: 768px) 100vw, 33vw"
         style={{
-          width: '100%',
-          height: '100%',
           objectFit: 'cover',
           display: 'block',
           transformOrigin: `${zoomState.originX}% ${zoomState.originY}%`,

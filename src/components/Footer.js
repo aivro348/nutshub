@@ -57,8 +57,16 @@ export default function Footer() {
         <div className="footer-col">
           <h4 className="footer-col-title">📍 Koramangala</h4>
           <p className="footer-address">
-            36/1, 1st Main Rd, below Seva In Action, S.T. Bed, 4th Block, Koramangala, Bengaluru, Karnataka 560034
+            36/1, 1st Main Rd, below Seva In Action, S.T. Bed, 4th Block, Koramangala, Bengaluru 560034
           </p>
+          <div style={{ margin: "8px 0 12px", display: "flex", flexDirection: "column", gap: "4px" }}>
+            <a href="tel:+919482169835" style={{ color: "#dfb76c", fontSize: "0.85rem", fontWeight: "700", textDecoration: "none" }}>
+              📞 094821 69835
+            </a>
+            <a href="https://wa.me/919482169835" target="_blank" rel="noopener noreferrer" style={{ color: "#25D366", fontSize: "0.82rem", fontWeight: "600", textDecoration: "none" }}>
+              💬 WhatsApp Chat
+            </a>
+          </div>
           <a
             href="https://www.google.com/maps/search/?api=1&query=36%2F1+1st+Main+Rd+Koramangala+Bengaluru+560034"
             target="_blank"
@@ -73,8 +81,16 @@ export default function Footer() {
         <div className="footer-col">
           <h4 className="footer-col-title">📍 Panathur</h4>
           <p className="footer-address">
-            Vaswani Reserve 84/2, Panathur Main Road, Kadubeesanahalli, Bengaluru, Karnataka 560103
+            Vaswani Reserve 84/2, Panathur Main Road, Kadubeesanahalli, Bengaluru 560103
           </p>
+          <div style={{ margin: "8px 0 12px", display: "flex", flexDirection: "column", gap: "4px" }}>
+            <a href="tel:+919480517939" style={{ color: "#dfb76c", fontSize: "0.85rem", fontWeight: "700", textDecoration: "none" }}>
+              📞 094805 17939
+            </a>
+            <a href="https://wa.me/919480517939" target="_blank" rel="noopener noreferrer" style={{ color: "#25D366", fontSize: "0.82rem", fontWeight: "600", textDecoration: "none" }}>
+              💬 WhatsApp Chat
+            </a>
+          </div>
           <a
             href="https://www.google.com/maps/search/?api=1&query=Vaswani+Reserve+Panathur+Bengaluru+560103"
             target="_blank"

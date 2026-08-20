@@ -11,12 +11,18 @@ const BRANCHES = [
     name: "Koramangala Branch",
     tag: "Branch 1",
     address: "36/1, 1st Main Rd, below Seva In Action, S.T. Bed, 4th Block, Koramangala, Bengaluru, Karnataka 560034",
+    phone: "094821 69835",
+    phoneUrl: "tel:+919482169835",
+    whatsappUrl: "https://wa.me/919482169835?text=Hi%20NutsHub%20Koramangala!%20I%20have%20an%20inquiry.",
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=36%2F1+1st+Main+Rd+below+seva+in+action+ST+Bed+4th+Block+Koramangala+Bengaluru+560034"
   },
   {
-    name: "Panathur / Kadubeesanahalli Branch",
+    name: "Kadubeesanahalli / Panathur Branch",
     tag: "Branch 2",
     address: "Vaswani Reserve 84/2, Panathur Main Road, Kadubeesanahalli, Bengaluru, Karnataka 560103",
+    phone: "094805 17939",
+    phoneUrl: "tel:+919480517939",
+    whatsappUrl: "https://wa.me/919480517939?text=Hi%20NutsHub%20Panathur!%20I%20have%20an%20inquiry.",
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Vaswani+Reserve+84%2F2+Panathur+Main+Road+Kadubeesanahalli+Bengaluru+560103"
   }
 ];
@@ -25,8 +31,11 @@ export default function ContactPage() {
   const contactDetails = [
     {
       icon: "📞",
-      title: "Phone & WhatsApp",
-      lines: ["+91 94805 17939", "Fast doorstep delivery across Bangalore"]
+      title: "Store Contact Numbers",
+      lines: [
+        "Koramangala: 094821 69835",
+        "Kadubeesanahalli: 094805 17939"
+      ]
     },
     {
       icon: "✉️",
@@ -58,7 +67,7 @@ export default function ContactPage() {
       {/* STORE BRANCHES GRID */}
       <section style={{ maxWidth: "1200px", margin: "60px auto", padding: "0 20px" }}>
         <h3 style={{ fontSize: "1.7rem", color: "#dfb76c", marginBottom: "25px", textAlign: "center", fontWeight: 700, fontFamily: "var(--font-display)" }}>
-          🏬 Our 2 Official Store Branches
+          🏬 Our Official Store Locations & Direct Lines
         </h3>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "25px" }}>
           {BRANCHES.map((branch, idx) => (
@@ -80,9 +89,26 @@ export default function ContactPage() {
                 <h4 style={{ fontSize: "1.35rem", color: "#fff", margin: "14px 0 10px", fontWeight: 700 }}>
                   {branch.name}
                 </h4>
-                <p style={{ color: "rgba(255,255,255,0.8)", fontSize: "0.95rem", lineHeight: "1.6", margin: "0 0 20px" }}>
+                <p style={{ color: "rgba(255,255,255,0.8)", fontSize: "0.95rem", lineHeight: "1.6", margin: "0 0 14px" }}>
                   📍 {branch.address}
                 </p>
+                <div style={{ marginBottom: "20px", display: "flex", flexWrap: "wrap", gap: "10px", alignItems: "center" }}>
+                  <a
+                    href={branch.phoneUrl}
+                    style={{ color: "#dfb76c", fontWeight: "700", textDecoration: "none", fontSize: "0.95rem" }}
+                  >
+                    📞 {branch.phone}
+                  </a>
+                  <span>•</span>
+                  <a
+                    href={branch.whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: "#25D366", fontWeight: "700", textDecoration: "none", fontSize: "0.9rem" }}
+                  >
+                    💬 WhatsApp Chat
+                  </a>
+                </div>
               </div>
               <a
                 href={branch.mapsUrl}
