@@ -1,11 +1,12 @@
+import { Suspense } from "react";
 import "./globals.css";
-import Script from "next/script";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import LoadingScreen from "@/components/LoadingScreen";
 import CursorGlow from "@/components/CursorGlow";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ScrollSequence from "@/components/ScrollSequence";
+import GoogleAnalyticsPageView from "@/components/GoogleAnalyticsPageView";
 
 export const metadata = {
   metadataBase: new URL("https://nutshub.online"),
@@ -56,21 +57,24 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* Google tag (gtag.js) */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-9R25BZ3DC4"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
+        {/* Google tag (gtag.js) - G-9R25BZ3DC4 */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-9R25BZ3DC4" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
 
-            gtag('config', 'G-9R25BZ3DC4');
-          `}
-        </Script>
+              gtag('config', 'G-9R25BZ3DC4', {
+                send_page_view: true,
+                cookie_flags: 'max-age=7200;secure;samesite=none'
+              });
+            `
+          }}
+        />
         <meta name="google-site-verification" content="3a4AnKGhjpOrKWnt67PaeTDVBtF5Hh8NQTjn4EPzPec" />
+        <link rel="canonical" href="https://www.nutshub.online" />
         <link rel="icon" href="/favicon.png" type="image/png" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-icon.png" />
@@ -128,6 +132,9 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+        <Suspense fallback={null}>
+          <GoogleAnalyticsPageView />
+        </Suspense>
         <LoadingScreen />
         <CursorGlow />
         <ScrollSequence />
